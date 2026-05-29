@@ -40,7 +40,7 @@ export default function BrandLogo({
   return (
     <div className={`inline-flex items-center ${textPosition === 'bottom' ? 'flex-col space-y-3' : 'space-x-4'} ${className}`}>
       <img
-        src="/logo.png"
+        src="./public/logo.png"
         alt="S&CO Logo"
         style={{ width: size, height: 'auto', objectFit: 'contain' }}
         className="transition-transform duration-500 hover:scale-105"
