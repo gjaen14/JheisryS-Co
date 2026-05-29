@@ -351,13 +351,13 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
                     Impuesto de Desconfianza Estimado
                   </span>
                   <span className="font-serif text-2xl font-bold text-red-200 block my-1">
-                    ${Math.round(estimatedRevenueLoss / 12).toLocaleString()}{' '}
+                    ${Math.round(estimatedRevenueLoss).toLocaleString()}{' '}
                     <span className="text-xs font-sans tracking-wide font-normal text-brand-champagne/70">
-                      USD / Mes
+                      USD / Año
                     </span>
                   </span>
                   <p className="font-sans text-[11px] text-brand-champagne/70 font-light leading-relaxed">
-                    Tu brecha de autoridad actual te cuesta ${Math.round(estimatedRevenueLoss / 12).toLocaleString()} al mes en contratos perdidos.
+                    Tu brecha de autoridad actual te cuesta ${Math.round(estimatedRevenueLoss).toLocaleString()} al año en contratos perdidos.
                   </p>
                 </div>
               </div>
