@@ -1,0 +1,6 @@
+{
+  "name": "S&CO - Diagnóstico de Autoridad",
+  "description": "Estudio boutique de alta costura digital. Audita tu ecosistema técnico y de marca para cobrar lo que realmente vale tu experiencia senior.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
