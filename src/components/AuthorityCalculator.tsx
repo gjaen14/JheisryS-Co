@@ -135,7 +135,6 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
         <div className="lg:col-span-7 bg-brand-brown/40 border border-brand-taupe/15 backdrop-blur-md rounded-2xl p-6 md:p-8 space-y-8">
           <h3 className="font-serif text-xl text-brand-white tracking-wide border-b border-brand-taupe/10 pb-4 flex items-center justify-between">
             <span>Análisis de Fugas de Autoridad</span>
-            <span className="text-xs font-sans tracking-widest uppercase text-brand-taupe font-medium">Boutique</span>
           </h3>
 
           {/* Revenue Input */}
