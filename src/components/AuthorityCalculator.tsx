@@ -17,6 +17,14 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
   });
 
   const [hoveredTip, setHoveredTip] = useState<string | null>(null);
+  const [annualRevenueInput, setAnnualRevenueInput] = useState<string>("150000");
+
+  const annualRevenue = parseInt(annualRevenueInput.replace(/\D/g, '')) || 0;
+
+  const handleRevenueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value.replace(/\D/g, '');
+    setAnnualRevenueInput(val);
+  };
 
   const handleSliderChange = (key: keyof AuditMetrics, val: number) => {
     setMetrics(prev => ({ ...prev, [key]: val }));
@@ -37,9 +45,9 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
   );
 
   // Estimating annual loss (Desconfianza Tax)
-  // Base value: a senior firm should average at least $120,000 to $500,000 USD/year.
-  // The scale of loss increases as collective score is low.
-  const estimatedRevenueLoss = Math.round((100 - collectiveScore) * 1650);
+  // Loss is dynamically calculated based on the annual revenue.
+  // Maximum penalty is modeled as 40% of their revenue left on the table due to authority leaks.
+  const estimatedRevenueLoss = Math.round(annualRevenue * ((100 - collectiveScore) / 100) * 0.40);
 
   // Dynamic diagnostic text based on the weakest link
   const getBespokeDiagnostic = () => {
@@ -126,9 +134,27 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
         {/* Sliders Control Panel */}
         <div className="lg:col-span-7 bg-brand-brown/40 border border-brand-taupe/15 backdrop-blur-md rounded-2xl p-6 md:p-8 space-y-8">
           <h3 className="font-serif text-xl text-brand-white tracking-wide border-b border-brand-taupe/10 pb-4 flex items-center justify-between">
-            <span>Evaluación Holística</span>
+            <span>Análisis de Fugas de Autoridad</span>
             <span className="text-xs font-sans tracking-widest uppercase text-brand-taupe font-medium">Boutique</span>
           </h3>
+
+          {/* Revenue Input */}
+          <div className="space-y-3 bg-brand-obsidian/40 p-4 rounded-xl border border-brand-taupe/10">
+            <label className="font-sans font-medium text-brand-white text-sm block">
+              Facturación Anual Aproximada
+            </label>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-taupe font-mono font-bold">$</span>
+              <input 
+                type="text" 
+                value={annualRevenueInput ? Number(annualRevenueInput).toLocaleString() : ""} 
+                onChange={handleRevenueChange}
+                className="w-full bg-brand-obsidian border border-brand-taupe/20 rounded-lg py-3 pl-8 pr-12 text-brand-white font-mono focus:outline-none focus:border-brand-taupe/50 transition-colors"
+                placeholder="150,000"
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-champagne/40 text-xs font-sans tracking-wider">USD</span>
+            </div>
+          </div>
 
           {/* Metric 1 */}
           <div className="space-y-3">
