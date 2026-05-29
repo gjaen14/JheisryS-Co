@@ -108,7 +108,7 @@ export default function Home() {
               Operas como Senior. Te proyectas como Junior.
             </h2>
             <p className="font-sans text-sm text-brand-champagne/80 font-light mt-4 leading-relaxed">
-              Existe una brecha de percepción que sabotea tu crecimiento. No es un problema de diseño, es un problema de posicionamiento financiero. Cuando la envoltura no iguala el valor del núcleo, el mercado impone un descuento.
+              Existe una brecha de percepción que sabotea tu crecimiento. Cuando tu capacidad técnica es superior a tu identidad visual, la confianza se rompe. No es un problema de diseño, es un problema de posicionamiento financiero.
             </p>
           </div>
 
@@ -193,7 +193,7 @@ export default function Home() {
             <span className="italic font-normal text-brand-taupe">Construimos activos.</span>
           </h2>
           <p className="font-sans text-sm text-brand-champagne/80 font-light max-w-2xl mx-auto leading-relaxed">
-            Nos regimos por el orden y la precisión técnica. En el mercado premium, tus prospectos no compran diseño estético; compran la certeza de tu autoridad estructurada en código y narrativa inquebrantable.
+            Nos regimos por el orden y la precisión técnica. No atendemos a quien busca parches estéticos, atendemos a firmas que buscan blindar su autoridad. Nuestra metodología fusiona la visión estratégica de Jheisry Aguilera con el rigor técnico de la agencia Soarity.
           </p>
           <div className="pt-4">
             <button
@@ -202,6 +202,34 @@ export default function Home() {
             >
               <span className="border-b border-brand-taupe/30 pb-1">Conoce nuestra postura</span>
               <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: CTA DE CIERRE (EL FILTRO) */}
+      <section className="py-20 md:py-32 bg-brand-brown/30 border-t border-brand-taupe/10 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_#181514_80%)] pointer-events-none" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-taupe/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 px-6 md:px-16 container mx-auto max-w-3xl text-center space-y-8">
+          <span className="font-sans text-xs tracking-[0.4em] uppercase text-brand-taupe font-semibold block">
+            Protocolo de Acceso
+          </span>
+          <h2 className="font-serif text-3xl md:text-5xl text-brand-white tracking-tight leading-tight">
+            El acceso a la autoridad<br/>
+            <span className="italic font-normal text-brand-taupe">comienza con un diagnóstico.</span>
+          </h2>
+          <p className="font-sans text-sm text-brand-champagne/80 font-light max-w-xl mx-auto leading-relaxed">
+            No aceptamos proyectos sin antes validar que podemos garantizar el retorno de inversión. El Diagnóstico de Autoridad es el primer filtro.
+          </p>
+          <div className="pt-4">
+            <button
+              onClick={handleDiagnosticoClick}
+              className="bg-brand-taupe hover:bg-brand-taupe/90 active:scale-[0.98] text-brand-obsidian font-sans font-semibold tracking-wider text-xs uppercase py-4 px-10 rounded-xl transition-all duration-300 inline-flex items-center gap-2.5 shadow-lg shadow-brand-taupe/10"
+            >
+              <span>Agendar Diagnóstico de Autoridad</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
