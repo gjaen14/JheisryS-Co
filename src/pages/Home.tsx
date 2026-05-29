@@ -82,6 +82,12 @@ export default function Home() {
             <span className="w-1.5 h-1.5 rounded-full bg-brand-taupe animate-pulse" />
           </div>
         </div>
+
+        {/* Cupos Limitados Indicator */}
+        <div className="absolute bottom-10 left-6 md:left-16 z-20 flex items-center gap-2 font-sans text-[10px] uppercase tracking-[0.25em] text-brand-champagne/60">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+          <span>Cupos Limitados (Solo 3 por semana)</span>
+        </div>
       </section>
 
       {/* SECTION: CALCULADORA DE LUCRO CESANTE */}
