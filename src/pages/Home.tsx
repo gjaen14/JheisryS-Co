@@ -186,16 +186,16 @@ export default function Home() {
       <section className="py-24 md:py-40 bg-brand-champagne text-brand-obsidian relative overflow-hidden">
         {/* Decoración Tipográfica Sutil (Quiet Luxury) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center opacity-[0.03] pointer-events-none select-none flex justify-center">
-          <span className="font-script text-[150px] md:text-[250px] leading-none whitespace-nowrap text-brand-obsidian">Autoridad Innegociable</span>
+          <span className="font-serif italic text-[150px] md:text-[250px] leading-none whitespace-nowrap text-brand-obsidian">Autoridad Innegociable</span>
         </div>
 
         <div className="relative z-10 px-6 md:px-16 container mx-auto max-w-4xl text-center space-y-10">
           <span className="font-sans text-xs tracking-[0.4em] uppercase text-brand-taupe font-bold block">
             Nuestra Postura
           </span>
-          <h2 className="font-sans font-bold text-3xl md:text-5xl lg:text-6xl text-brand-obsidian tracking-tight leading-tight">
+          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-obsidian tracking-tight leading-tight">
             No diseñamos piezas aisladas.<br />
-            <span className="font-script text-5xl md:text-7xl lg:text-8xl text-brand-taupe block mt-6 font-normal">Construimos activos.</span>
+            <span className="font-serif italic text-5xl md:text-7xl lg:text-8xl text-brand-taupe block mt-6 font-normal">Construimos activos.</span>
           </h2>
           <p className="font-sans text-sm md:text-base text-brand-obsidian/80 font-medium max-w-2xl mx-auto leading-relaxed">
             Me rijo por el orden y la precisión técnica. No atiendo a quien busca parches estéticos, trabajo con firmas que buscan blindar su autoridad y proteger su posicionamiento. Mi visión estratégica es ejecutada al milímetro por la agencia Soarity, el brazo técnico que respalda la construcción de cada ecosistema corporativo que diseñamos.

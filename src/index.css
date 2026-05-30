@@ -1,19 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   /* Tipografía (Quiet Luxury) */
   --font-serif: "The Silver Editorial", "Playfair Display", serif; /* Titulares: The Silver Editorial */
   --font-sans: "Poppins", sans-serif; /* Poppins para Párrafos (Estructura) */
-  --font-script: "Sloop Script Pro", "Great Vibes", cursive; /* Acentos y Firma */
   
   /* Paleta Cromática (Quiet Luxury) */
   --color-brand-obsidian: #130f08; /* Negro Obsidiana / Carbón Cálido */
   --color-brand-brown: #130f08; /* Marrón Espresso / Café Oscuro */
   --color-brand-taupe: #4c3628; /* Marrón Moca / Tono Tierra */
   --color-brand-sand: #C8B6A6; /* Beige Arena (Botones primarios y acentos luminosos) */
-  --color-brand-champagne: #F4F1ED; /* Blanco Hueso / Crema (reemplaza visualmente al Champagne) */
-  --color-brand-white: #F4F1ED; /* Evitar blanco puro, usar Blanco Hueso */
+  --color-brand-champagne: #f2f1eb; /* Blanco Hueso / Crema */
+  --color-brand-white: #f2f1eb; /* Evitar blanco puro, usar Blanco Hueso */
 }
 
 body {
