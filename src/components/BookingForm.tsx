@@ -127,10 +127,10 @@ export default function BookingForm({ onClose, initialScore = 45 }: BookingFormP
             </div>
 
             <div className="space-y-4 mt-8">
-              <h4 className="font-serif text-lg text-brand-white leading-snug">
+              <h4 className="font-serif text-xl md:text-lg text-brand-white leading-snug">
                 El Diagnóstico de Autoridad
               </h4>
-              <p className="font-sans text-xs text-brand-champagne/80 font-light leading-relaxed">
+              <p className="font-sans text-base md:text-xs text-brand-champagne/80 font-light leading-relaxed">
                 Una hora a puerta cerrada. Ninguna auditoría corporativa convencional se compara a la profundidad visual y de arquitectura técnica que realizamos.
               </p>
             </div>
@@ -183,11 +183,11 @@ export default function BookingForm({ onClose, initialScore = 45 }: BookingFormP
                   className="space-y-6"
                 >
                   <div>
-                    <h3 className="font-serif text-xl md:text-2xl text-brand-white mb-2">
+                    <h3 className="font-serif text-2xl md:text-2xl text-brand-white mb-2">
                       Comencemos con tu ecosistema digital
                     </h3>
-                    <p className="font-sans text-xs text-brand-champagne/70 font-light">
-                      Proveenos los enlaces y datos de tu firma para realizar el pre-análisis exhaustivo antes de nuestra llamada.
+                    <p className="font-sans text-base md:text-xs text-brand-champagne/70 font-light">
+                      Proveenos los enlaces y datos de tu firma para realizar el pre-análisis exhaustivo antes de mi llamada.
                     </p>
                   </div>
 
@@ -290,10 +290,10 @@ export default function BookingForm({ onClose, initialScore = 45 }: BookingFormP
                   className="space-y-6"
                 >
                   <div>
-                    <h3 className="font-serif text-xl md:text-2xl text-brand-white mb-2">
+                    <h3 className="font-serif text-2xl md:text-2xl text-brand-white mb-2">
                       Sincroniza agendas de alta dirección
                     </h3>
-                    <p className="font-sans text-xs text-brand-champagne/70 font-light">
+                    <p className="font-sans text-base md:text-xs text-brand-champagne/70 font-light">
                       Debido al involucramiento de Gustavo y Jheisry personalmente en cada diagnóstico, solo hay de 3 a 4 huecos a la semana. Escoge tu ranura de privilegio:
                     </p>
                   </div>
@@ -374,10 +374,10 @@ export default function BookingForm({ onClose, initialScore = 45 }: BookingFormP
                   className="space-y-6"
                 >
                   <div>
-                    <h3 className="font-serif text-xl md:text-2xl text-brand-white mb-2">
+                    <h3 className="font-serif text-2xl md:text-2xl text-brand-white mb-2">
                       Pasarela de pago blindada
                     </h3>
-                    <p className="font-sans text-xs text-brand-champagne/70 font-light">
+                    <p className="font-sans text-base md:text-xs text-brand-champagne/70 font-light">
                       Agendamiento de alta seguridad con protección bancaria SSL de 256 bits. Se procesará tu inversión premium de $250.00 USD.
                     </p>
                   </div>
@@ -581,7 +581,7 @@ export default function BookingForm({ onClose, initialScore = 45 }: BookingFormP
 
                   <button
                     onClick={onClose}
-                    className="bg-brand-taupe hover:bg-brand-taupe/90 text-brand-obsidian font-sans font-semibold tracking-wider text-xs uppercase py-3.5 px-8 rounded-xl transition-all duration-300"
+                    className="w-full md:w-auto bg-brand-sand hover:bg-brand-sand/90 text-brand-obsidian font-sans font-bold md:font-semibold tracking-wider text-base md:text-xs uppercase py-5 md:py-3.5 px-8 rounded-xl transition-all duration-300 shadow-lg shadow-brand-sand/10"
                   >
                     Regresar al Estudio
                   </button>
@@ -617,14 +617,14 @@ export default function BookingForm({ onClose, initialScore = 45 }: BookingFormP
                   type="button"
                   disabled={!isIntakeValid}
                   onClick={() => setStep(2)}
-                  className={`px-6 py-3 rounded-xl font-sans font-semibold uppercase text-[10px] tracking-widest flex items-center gap-2 transition-all duration-200 ${
+                  className={`w-full md:w-auto justify-center px-6 py-5 md:py-3 rounded-xl font-sans font-bold md:font-semibold uppercase text-base md:text-[10px] tracking-widest flex items-center gap-2 transition-all duration-200 ${
                     isIntakeValid 
-                      ? 'bg-brand-taupe text-brand-obsidian cursor-pointer active:scale-95' 
+                      ? 'bg-brand-sand text-brand-obsidian cursor-pointer active:scale-95 shadow-md shadow-brand-sand/10' 
                       : 'bg-brand-obsidian text-brand-champagne/30 border border-brand-taupe/5 cursor-not-allowed'
                   }`}
                 >
                   <span>Elegir Horario</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-4 h-4 md:w-3.5 md:h-3.5" />
                 </button>
               )}
 
@@ -632,10 +632,10 @@ export default function BookingForm({ onClose, initialScore = 45 }: BookingFormP
                 <button
                   type="button"
                   onClick={() => setStep(3)}
-                  className="bg-brand-taupe text-brand-obsidian px-6 py-3 rounded-xl font-sans font-semibold uppercase text-[10px] tracking-widest flex items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95"
+                  className="w-full md:w-auto justify-center bg-brand-sand text-brand-obsidian px-6 py-5 md:py-3 rounded-xl font-sans font-bold md:font-semibold uppercase text-base md:text-[10px] tracking-widest flex items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95 shadow-md shadow-brand-sand/10"
                 >
                   <span>Proceder al checkout</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-4 h-4 md:w-3.5 md:h-3.5" />
                 </button>
               )}
 
@@ -644,20 +644,20 @@ export default function BookingForm({ onClose, initialScore = 45 }: BookingFormP
                   type="button"
                   onClick={handlePaymentSubmit}
                   disabled={!isCardValid || isSubmitting}
-                  className={`px-8 py-3.5 rounded-xl font-sans font-semibold uppercase text-[10px] tracking-widest flex items-center justify-center gap-2.5 transition-all duration-300 ${
+                  className={`w-full md:w-auto justify-center px-8 py-5 md:py-3.5 rounded-xl font-sans font-bold md:font-semibold uppercase text-base md:text-[10px] tracking-widest flex items-center gap-2.5 transition-all duration-300 ${
                     isCardValid && !isSubmitting
-                      ? 'bg-brand-taupe text-brand-obsidian cursor-pointer hover:bg-brand-taupe/90 active:scale-98 shadow-lg'
+                      ? 'bg-brand-sand text-brand-obsidian cursor-pointer hover:bg-brand-sand/90 active:scale-98 shadow-lg shadow-brand-sand/10'
                       : 'bg-brand-obsidian text-brand-champagne/30 border border-brand-taupe/5 cursor-not-allowed'
                   }`}
                 >
                   {isSubmitting ? (
                     <>
-                      <RefreshCw className="w-4 h-4 animate-spin" />
+                      <RefreshCw className="w-5 h-5 md:w-4 md:h-4 animate-spin" />
                       <span>Verificando Fondos...</span>
                     </>
                   ) : (
                     <>
-                      <ShieldCheck className="w-4 h-4" />
+                      <ShieldCheck className="w-5 h-5 md:w-4 md:h-4" />
                       <span>Aprobar Pago de $250.00 USD</span>
                     </>
                   )}

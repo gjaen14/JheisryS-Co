@@ -119,11 +119,11 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-[1px] bg-gradient-to-r from-transparent via-brand-taupe/30 to-transparent" />
 
       <div className="text-center max-w-2xl mx-auto mb-12">
-        <span className="font-sans text-xs tracking-[0.4em] uppercase text-brand-taupe font-semibold">
+        <span className="font-sans text-xs tracking-[0.4em] uppercase text-brand-sand font-semibold">
           Simulador de Postura & Impacto
         </span>
-        <h2 className="font-serif text-3xl md:text-4xl text-brand-white mt-3 mb-4 tracking-tight leading-tight">
-          Calcula tu <span className="italic font-normal text-brand-taupe">impuesto de la desconfianza.</span>
+        <h2 className="font-serif text-3xl md:text-5xl text-brand-white mt-3 mb-4 tracking-tight leading-tight">
+          <span className="italic font-light text-brand-taupe">Calcula</span> tu impuesto de la desconfianza.
         </h2>
         <p className="font-sans text-sm text-brand-champagne/80 font-light max-w-lg mx-auto">
           Identifica cuánto capital estás dejando sobre la mesa debido a la brecha entre tu capacidad técnica y tu presencia digital.
@@ -144,9 +144,9 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
             </label>
             <div className="relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-taupe font-mono font-bold">$</span>
-              <input 
-                type="text" 
-                value={annualRevenueInput ? Number(annualRevenueInput).toLocaleString() : ""} 
+              <input
+                type="text"
+                value={annualRevenueInput ? Number(annualRevenueInput).toLocaleString() : ""}
                 onChange={handleRevenueChange}
                 className="w-full bg-brand-obsidian border border-brand-taupe/20 rounded-lg py-3 pl-8 pr-12 text-brand-white font-mono focus:outline-none focus:border-brand-taupe/50 transition-colors"
                 placeholder="150,000"
@@ -160,7 +160,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
             <div className="flex justify-between items-center text-sm">
               <label className="font-sans font-medium text-brand-white flex items-center gap-2">
                 Identidad Visual & Diseño Premium
-                <span 
+                <span
                   className="cursor-help text-brand-taupe/70 hover:text-brand-taupe transition-colors"
                   onMouseEnter={() => setHoveredTip('brand')}
                   onMouseLeave={() => setHoveredTip(null)}
@@ -170,7 +170,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
               </label>
               <span className="font-mono text-brand-taupe font-bold">{metrics.brandIdentity}/10</span>
             </div>
-            
+
             <input
               type="range"
               min="1"
@@ -180,7 +180,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
               onChange={(e) => handleSliderChange('brandIdentity', parseInt(e.target.value))}
               className="w-full h-[3px] bg-brand-obsidian rounded-lg appearance-none cursor-pointer accent-brand-taupe focus:outline-none"
             />
-            
+
             <div className="flex justify-between text-[10px] font-sans text-brand-champagne/40 tracking-wider">
               <span>Plantilla Genérica (1)</span>
               <span>Alta Costura Digital (10)</span>
@@ -192,7 +192,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
             <div className="flex justify-between items-center text-sm">
               <label className="font-sans font-medium text-brand-white flex items-center gap-2">
                 Arquitectura Técnica & Velocidad
-                <span 
+                <span
                   className="cursor-help text-brand-taupe/70 hover:text-brand-taupe transition-colors"
                   onMouseEnter={() => setHoveredTip('tech')}
                   onMouseLeave={() => setHoveredTip(null)}
@@ -202,7 +202,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
               </label>
               <span className="font-mono text-brand-taupe font-bold">{metrics.techArchitecture}/10</span>
             </div>
-            
+
             <input
               type="range"
               min="1"
@@ -212,7 +212,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
               onChange={(e) => handleSliderChange('techArchitecture', parseInt(e.target.value))}
               className="w-full h-[3px] bg-brand-obsidian rounded-lg appearance-none cursor-pointer accent-brand-taupe focus:outline-none"
             />
-            
+
             <div className="flex justify-between text-[10px] font-sans text-brand-champagne/40 tracking-wider">
               <span>Fácil Ruptura / Lento (1)</span>
               <span>Ultra-rápido / Custom (10)</span>
@@ -224,7 +224,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
             <div className="flex justify-between items-center text-sm">
               <label className="font-sans font-medium text-brand-white flex items-center gap-2">
                 Presencia Activa & Trust Signals
-                <span 
+                <span
                   className="cursor-help text-brand-taupe/70 hover:text-brand-taupe transition-colors"
                   onMouseEnter={() => setHoveredTip('presence')}
                   onMouseLeave={() => setHoveredTip(null)}
@@ -234,7 +234,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
               </label>
               <span className="font-mono text-brand-taupe font-bold">{metrics.digitalPresence}/10</span>
             </div>
-            
+
             <input
               type="range"
               min="1"
@@ -244,7 +244,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
               onChange={(e) => handleSliderChange('digitalPresence', parseInt(e.target.value))}
               className="w-full h-[3px] bg-brand-obsidian rounded-lg appearance-none cursor-pointer accent-brand-taupe focus:outline-none"
             />
-            
+
             <div className="flex justify-between text-[10px] font-sans text-brand-champagne/40 tracking-wider">
               <span>Anónimo / Sin Prueba (1)</span>
               <span>Autoridad Inapelable (10)</span>
@@ -256,7 +256,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
             <div className="flex justify-between items-center text-sm">
               <label className="font-sans font-medium text-brand-white flex items-center gap-2">
                 Firmeza de Precios (Cero Descuentos)
-                <span 
+                <span
                   className="cursor-help text-brand-taupe/70 hover:text-brand-taupe transition-colors"
                   onMouseEnter={() => setHoveredTip('pricing')}
                   onMouseLeave={() => setHoveredTip(null)}
@@ -266,7 +266,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
               </label>
               <span className="font-mono text-brand-taupe font-bold">{metrics.pricingConfidence}/10</span>
             </div>
-            
+
             <input
               type="range"
               min="1"
@@ -276,7 +276,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
               onChange={(e) => handleSliderChange('pricingConfidence', parseInt(e.target.value))}
               className="w-full h-[3px] bg-brand-obsidian rounded-lg appearance-none cursor-pointer accent-brand-taupe focus:outline-none"
             />
-            
+
             <div className="flex justify-between text-[10px] font-sans text-brand-champagne/40 tracking-wider">
               <span>Vendes por Precio (1)</span>
               <span>Postura Innegociable (10)</span>
@@ -317,7 +317,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
 
         {/* Real-time Dynamic Results Card */}
         <div className="lg:col-span-5 flex flex-col gap-6">
-          
+
           {/* Main Results Board */}
           <div className="bg-brand-brown/40 border border-brand-taupe/20 backdrop-blur-md rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full relative overflow-hidden">
             {/* Visual shine */}
@@ -378,7 +378,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
             {/* CTA to lock and check */}
             <button
               onClick={() => onStartBooking(collectiveScore)}
-              className="w-full bg-brand-taupe hover:bg-brand-taupe/90 active:scale-[0.98] text-brand-obsidian font-sans font-semibold tracking-wider text-xs uppercase py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
+              className="w-full bg-brand-sand hover:bg-brand-sand/90 active:scale-[0.98] text-brand-obsidian font-sans font-bold md:font-semibold tracking-wider text-xs uppercase py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-brand-sand/10"
             >
               <span>Ver mi Diagnóstico Preliminar</span>
               <ArrowRight className="w-4 h-4" />
