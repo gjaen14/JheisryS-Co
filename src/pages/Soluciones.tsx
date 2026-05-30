@@ -14,7 +14,7 @@ export default function Soluciones() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-4xl sm:text-5xl md:text-6xl text-brand-white tracking-tight leading-[1.1]"
+          className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-white tracking-tight leading-[1.1]"
         >
           Tu marca no necesita un rediseño.<br/>
           <span className="italic font-normal text-brand-taupe">Necesita un sistema de activos.</span>
@@ -35,8 +35,8 @@ export default function Soluciones() {
                   <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-brand-taupe font-semibold block mb-2">
                     Fase 0
                   </span>
-                  <h3 className="font-serif text-2xl text-brand-white mb-3">Diagnóstico de Autoridad</h3>
-                  <p className="font-sans text-xs text-brand-champagne/70 font-light leading-relaxed">
+                  <h3 className="font-serif text-2xl md:text-3xl text-brand-white mb-3">Diagnóstico de Autoridad</h3>
+                  <p className="font-sans text-base md:text-xs text-brand-champagne/70 font-light leading-relaxed">
                     El Filtro — La validación innegociable. No asumimos ni adivinamos. Ingresamos a tu ecosistema para detectar latencias, inconsistencias y fugas de capital provocadas por una presencia deficiente.
                   </p>
                 </div>
@@ -58,8 +58,8 @@ export default function Soluciones() {
                   <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-brand-taupe font-semibold block mb-2">
                     Fase 1
                   </span>
-                  <h3 className="font-serif text-2xl text-brand-white mb-3">Branding Estratégico</h3>
-                  <p className="font-sans text-xs text-brand-champagne/70 font-light leading-relaxed">
+                  <h3 className="font-serif text-2xl md:text-3xl text-brand-white mb-3">Branding Estratégico</h3>
+                  <p className="font-sans text-base md:text-xs text-brand-champagne/70 font-light leading-relaxed">
                     El Pivote — Identidad de alto valor. Construimos un relato visual y verbal que proyecte el estándar real de tu operación. Eliminamos el aspecto genérico y lo reemplazamos con autoridad pura.
                   </p>
                 </div>
@@ -81,8 +81,8 @@ export default function Soluciones() {
                   <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-brand-taupe font-semibold block mb-2">
                     Fase 2
                   </span>
-                  <h3 className="font-serif text-2xl text-brand-white mb-3">Ecosistema de Autoridad</h3>
-                  <p className="font-sans text-xs text-brand-champagne/70 font-light leading-relaxed">
+                  <h3 className="font-serif text-2xl md:text-3xl text-brand-white mb-3">Ecosistema de Autoridad</h3>
+                  <p className="font-sans text-base md:text-xs text-brand-champagne/70 font-light leading-relaxed">
                     El Blindaje — Activos de negocio. Desarrollo técnico inmaculado. Programamos en código nativo de alta latencia para asegurar que tu carta de presentación digital sea instantánea, fluida e irrefutable.
                   </p>
                 </div>
@@ -101,22 +101,24 @@ export default function Soluciones() {
 
       {/* SECCIÓN: POLÍTICA DE INTEGRIDAD */}
       <section className="py-24 md:py-32 px-6 md:px-16 container mx-auto max-w-3xl text-center">
-        <div className="bg-brand-obsidian border border-brand-taupe/20 rounded-2xl p-10 md:p-16 relative overflow-hidden">
+        <div className="bg-brand-obsidian border border-brand-taupe/20 rounded-2xl px-6 py-10 md:p-16 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-red-900/5 rounded-full blur-2xl pointer-events-none" />
           
           <AlertTriangle className="w-8 h-8 text-brand-taupe/50 mx-auto mb-6" />
-          
-          <h2 className="font-serif text-3xl text-brand-white mb-6">
-            Nuestra política de Cero Parches
+          <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-brand-taupe font-semibold block mb-2">
+            Mi política de Cero Parches
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl text-brand-white mt-4 leading-tight">
+            El compromiso de la firma
           </h2>
           
-          <p className="font-sans text-sm text-brand-champagne/80 font-light leading-relaxed mb-8">
-            No hacemos "logos", ni "arreglitos" aislados en sitios web deficientes. Tratar de curar un problema estructural con tácticas estéticas aisladas es una pérdida de tiempo para ti y para nosotros. Únicamente implementamos Ecosistemas de Autoridad Completos porque es la única vía para garantizar un impacto cuantificable en tu valoración en el mercado.
+          <p className="font-sans text-sm md:text-base text-brand-champagne/80 font-light mt-6 leading-relaxed">
+            No hago "logos", ni "arreglitos" aislados en sitios web deficientes. Tratar de curar un problema estructural con tácticas estéticas aisladas es una pérdida de tiempo para ti y para mí. Únicamente implemento Ecosistemas de Autoridad Completos porque es la única vía para garantizar un impacto cuantificable en tu valoración en el mercado.
           </p>
 
           <button
             onClick={() => navigate('/diagnostico')}
-            className="inline-flex items-center gap-2 bg-brand-taupe hover:bg-brand-taupe/90 text-brand-obsidian font-sans font-semibold tracking-wider text-xs uppercase py-3 px-8 rounded-xl transition-all duration-300 shadow-lg shadow-brand-taupe/10"
+            className="w-full md:w-auto inline-flex justify-center items-center gap-2 bg-brand-sand hover:bg-brand-sand/90 text-brand-obsidian font-sans font-bold md:font-semibold tracking-wider text-base md:text-xs uppercase py-5 md:py-3 px-8 rounded-xl transition-all duration-300 shadow-lg shadow-brand-sand/10 mt-8"
           >
             <span>Iniciar Diagnóstico</span>
             <ArrowRight className="w-4 h-4 text-brand-obsidian" />

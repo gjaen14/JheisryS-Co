@@ -2,14 +2,17 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-sans: "Poppins", sans-serif;
+  /* Tipografía (Quiet Luxury) */
+  --font-serif: "The Silver Editorial", "Playfair Display", serif; /* Titulares: The Silver Editorial */
+  --font-sans: "Poppins", sans-serif; /* Poppins para Párrafos (Estructura) */
   
-  --color-brand-obsidian: #181514;
-  --color-brand-brown: #251E1A;
-  --color-brand-taupe: #B39E8C;
-  --color-brand-champagne: #D1C6BD;
-  --color-brand-white: #FAFAFA;
+  /* Paleta Cromática (Quiet Luxury) */
+  --color-brand-obsidian: #130f08; /* Negro Obsidiana / Carbón Cálido */
+  --color-brand-brown: #130f08; /* Marrón Espresso / Café Oscuro */
+  --color-brand-taupe: #4c3628; /* Marrón Moca / Tono Tierra */
+  --color-brand-sand: #C8B6A6; /* Beige Arena (Botones primarios y acentos luminosos) */
+  --color-brand-champagne: #f2f1eb; /* Blanco Hueso / Crema */
+  --color-brand-white: #f2f1eb; /* Evitar blanco puro, usar Blanco Hueso */
 }
 
 body {
@@ -17,4 +20,20 @@ body {
   background-color: var(--color-brand-obsidian);
   color: var(--color-brand-white);
   overflow-x: hidden;
+}
+
+/* Forzar cursor hand en versión web (dispositivos con mouse) */
+@media (hover: hover) and (pointer: fine) {
+  button, 
+  a, 
+  [role="button"] {
+    cursor: pointer !important;
+  }
+}
+
+/* Micro-interacciones (Punto 4: Transición fluida casi imperceptible) */
+button, 
+a, 
+[role="button"] {
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
