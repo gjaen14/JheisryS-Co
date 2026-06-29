@@ -6,7 +6,6 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import Soluciones from './pages/Soluciones';
 import LaFirma from './pages/LaFirma';
-import Resultados from './pages/Resultados';
 import Diagnostico from './pages/Diagnostico';
 import Acceso from './pages/Acceso';
 
@@ -27,7 +26,6 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="soluciones" element={<Soluciones />} />
           <Route path="la-firma" element={<LaFirma />} />
-          <Route path="resultados" element={<Resultados />} />
           <Route path="diagnostico" element={<Diagnostico />} />
           <Route path="acceso" element={<Acceso />} />
         </Route>

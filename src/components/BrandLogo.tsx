@@ -35,33 +35,17 @@ export default function BrandLogo({
 
   const color = getColor();
 
-  // Custom high-precision paths modeled on the logo:
-  // Sweep wings rising from bottom-left to top-right plus a 4-point glint star.
   return (
-    <div className={`inline-flex items-center ${textPosition === 'bottom' ? 'flex-col space-y-3' : 'space-x-4'} ${className}`}>
+    <div
+      className={`flex items-center justify-center mt-0 md:mt-2 ${className}`}
+      style={{ height: size, width: size * 4.5 }} // El contenedor no crece, protege el layout del menú
+    >
       <img
         src="/Logo.png"
-        alt="S&CO Logo"
-        style={{ width: size, height: 'auto', objectFit: 'contain' }}
-        className="transition-transform duration-500 hover:scale-105"
+        alt="Jheisry S&CO Logo"
+        className="mix-blend-screen transition-transform duration-500"
+        style={{ transform: 'scale(1.1)', transformOrigin: 'center' }} // Escalado visual extremo para anular el borde negro
       />
-
-      {showText && (
-        <div className={`flex flex-col text-left ${textPosition === 'bottom' ? 'items-center text-center' : ''}`}>
-          <span
-            className="font-serif text-lg tracking-[0.25em] font-light leading-none"
-            style={{ color }}
-          >
-            {textType === 'short' ? 'S&CO+' : 'SOARITY & CO.'}
-          </span>
-          <span
-            className="font-sans text-[9px] tracking-[0.4em] uppercase opacity-60 mt-1 font-medium"
-            style={{ color }}
-          >
-            Alta Costura Digital
-          </span>
-        </div>
-      )}
     </div>
   );
 }
