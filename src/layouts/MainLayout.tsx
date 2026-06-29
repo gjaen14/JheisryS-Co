@@ -44,7 +44,6 @@ export default function MainLayout() {
           <Link to="/" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/' ? 'text-brand-taupe font-medium' : ''}`}>Inicio</Link>
           <Link to="/soluciones" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/soluciones' ? 'text-brand-taupe font-medium' : ''}`}>Soluciones</Link>
           <Link to="/la-firma" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/la-firma' ? 'text-brand-taupe font-medium' : ''}`}>La Firma</Link>
-          <Link to="/resultados" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/resultados' ? 'text-brand-taupe font-medium' : ''}`}>Resultados</Link>
           <Link to="/acceso" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/acceso' ? 'text-brand-taupe font-medium' : ''}`}>Acceso</Link>
         </nav>
 
@@ -76,7 +75,6 @@ export default function MainLayout() {
           <Link onClick={() => setIsMobileMenuOpen(false)} to="/" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/' ? 'text-brand-taupe font-medium' : ''}`}>Inicio</Link>
           <Link onClick={() => setIsMobileMenuOpen(false)} to="/soluciones" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/soluciones' ? 'text-brand-taupe font-medium' : ''}`}>Soluciones</Link>
           <Link onClick={() => setIsMobileMenuOpen(false)} to="/la-firma" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/la-firma' ? 'text-brand-taupe font-medium' : ''}`}>La Firma</Link>
-          <Link onClick={() => setIsMobileMenuOpen(false)} to="/resultados" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/resultados' ? 'text-brand-taupe font-medium' : ''}`}>Resultados</Link>
           <Link onClick={() => setIsMobileMenuOpen(false)} to="/acceso" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/acceso' ? 'text-brand-taupe font-medium' : ''}`}>Acceso</Link>
           
           <div className="pt-8 border-t border-brand-taupe/10 w-[80%] max-w-[250px] flex justify-center">
@@ -127,7 +125,6 @@ export default function MainLayout() {
               <li><Link to="/" className="hover:text-brand-white transition-colors">Inicio</Link></li>
               <li><Link to="/soluciones" className="hover:text-brand-white transition-colors">Soluciones</Link></li>
               <li><Link to="/la-firma" className="hover:text-brand-white transition-colors">La Firma</Link></li>
-              <li><Link to="/resultados" className="hover:text-brand-white transition-colors">Resultados</Link></li>
               <li><Link to="/acceso" className="hover:text-brand-white transition-colors">Acceso</Link></li>
             </ul>
           </div>

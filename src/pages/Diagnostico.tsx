@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Lock, ArrowRight, CheckCircle2 } from 'lucide-react';
+import PaypalButton from '../components/PaypalButton';
 
 export default function Diagnostico() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showError, setShowError] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
     empresa: '',
@@ -15,7 +17,11 @@ export default function Diagnostico() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.aceptaCargo) return;
+    if (!formData.aceptaCargo) {
+      setShowError(true);
+      return;
+    }
+    setShowError(false);
     
     setIsSubmitting(true);
     // Simulate API delay
@@ -24,6 +30,8 @@ export default function Diagnostico() {
       setShowPaymentModal(true);
     }, 1500);
   };
+
+
 
   const handleSimulatePayment = () => {
     alert("Redirigiendo a pasarela segura de Stripe / Calendario Privado...");
@@ -129,7 +137,7 @@ export default function Diagnostico() {
                   {formData.aceptaCargo && <CheckCircle2 className="w-3 h-3 text-brand-obsidian absolute pointer-events-none" />}
                 </div>
                 <span className="text-[10px] md:text-xs text-brand-champagne/60 font-light leading-relaxed group-hover:text-brand-champagne/80 transition-colors">
-                  Entiendo que el Diagnóstico tiene un valor de <strong className="text-brand-taupe font-semibold">$250 USD</strong> y estoy preparado para proceder al pago si mi solicitud es aprobada.
+                  Entiendo que el Diagnóstico tiene un valor de <strong className="text-brand-taupe font-semibold">$265 USD</strong> y estoy preparado para proceder al pago si mi solicitud es aprobada.
                 </span>
               </label>
             </div>
@@ -137,22 +145,30 @@ export default function Diagnostico() {
             <div className="pt-6">
               <button
                 type="submit"
-                disabled={!formData.aceptaCargo || isSubmitting}
-                className={`w-full font-sans font-semibold tracking-wider text-xs uppercase py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 ${
-                  !formData.aceptaCargo
-                    ? 'bg-brand-taupe/20 text-brand-taupe/40 cursor-not-allowed'
-                    : 'bg-brand-taupe hover:bg-brand-taupe/90 text-brand-obsidian shadow-lg shadow-brand-taupe/10 cursor-pointer active:scale-[0.98]'
-                }`}
+                onClick={() => {
+                  if (!formData.aceptaCargo) {
+                    setShowError(true);
+                  } else {
+                    setShowError(false);
+                  }
+                }}
+                disabled={isSubmitting}
+                className="w-full bg-[#c8b6a6] text-[#130f08] font-sans font-semibold tracking-wider text-xs uppercase py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#c8b6a6]/90 shadow-lg shadow-[#c8b6a6]/10 cursor-pointer active:scale-[0.98]"
               >
                 {isSubmitting ? (
                   <span className="animate-pulse">Validando datos...</span>
                 ) : (
                   <>
-                    <span>Proceder con el Diagnóstico</span>
+                    <span>Continuar al pago</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
               </button>
+              {showError && !formData.aceptaCargo && (
+                <p className="text-[#e27a5e] text-xs font-light text-center mt-3">
+                  Por favor, confirma que aceptas la inversión del diagnóstico para continuar.
+                </p>
+              )}
             </div>
             
           </form>
@@ -165,16 +181,11 @@ export default function Diagnostico() {
           <div className="bg-brand-brown border border-brand-taupe/30 rounded-2xl p-8 max-w-md w-full shadow-2xl relative font-sans animate-in fade-in zoom-in duration-300">
             <div className="text-center mb-8">
               <Lock className="w-8 h-8 text-brand-taupe mx-auto mb-4" />
-              <h2 className="text-lg text-brand-white font-serif mb-2">Pasarela Segura</h2>
-              <p className="text-xs text-brand-champagne/60 font-light">Estás a punto de procesar tu pase de Diagnóstico Ejecutivo por $250 USD.</p>
+              <h2 className="text-lg text-brand-white font-serif mb-2">Acceso a la Autoridad</h2>
+              <p className="text-xs text-brand-champagne/60 font-light">Estás a un paso de iniciar tu Diagnóstico de Autoridad. Inversión final: $265 USD</p>
             </div>
             
-            <button
-              onClick={handleSimulatePayment}
-              className="w-full bg-brand-taupe hover:bg-brand-taupe/90 text-brand-obsidian font-semibold tracking-wider text-xs uppercase py-3 px-8 rounded-xl transition-all duration-300 shadow-lg shadow-brand-taupe/10"
-            >
-              Simular Pago con Stripe
-            </button>
+            <PaypalButton />
             
             <button
               onClick={() => setShowPaymentModal(false)}

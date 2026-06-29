@@ -17,7 +17,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
   });
 
   const [hoveredTip, setHoveredTip] = useState<string | null>(null);
-  const [annualRevenueInput, setAnnualRevenueInput] = useState<string>("150000");
+  const [annualRevenueInput, setAnnualRevenueInput] = useState<string>("");
   const [showResults, setShowResults] = useState(false);
 
   const annualRevenue = parseInt(annualRevenueInput.replace(/\D/g, '')) || 0;
@@ -164,8 +164,8 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
                         type="text"
                         value={annualRevenueInput ? Number(annualRevenueInput.replace(/\D/g, '')).toLocaleString() : ""}
                         onChange={handleRevenueChange}
-                        className="w-full bg-brand-obsidian border border-brand-taupe/20 rounded-lg py-2.5 pl-8 pr-12 text-brand-white font-mono text-sm focus:outline-none focus:border-brand-taupe/50 transition-colors"
-                        placeholder="150,000"
+                        className="w-full bg-brand-obsidian border-t-0 border-x-0 border-b border-[rgba(200,182,166,0.4)] py-2.5 pl-8 pr-12 text-brand-white font-mono text-sm focus:outline-none focus:border-[rgba(200,182,166,0.4)] focus:border-b-[#c8b6a6] focus:ring-0 transition-colors cursor-text rounded-none placeholder:font-sans placeholder:font-light placeholder:text-brand-champagne/40 placeholder:text-xs placeholder:italic"
+                        placeholder="(Ej. 200,000)"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-champagne/40 text-xs font-sans tracking-wider">USD</span>
                     </div>
@@ -197,7 +197,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
                         onChange={(e) => handleSliderChange('brandIdentity', parseInt(e.target.value))}
                         className="w-full h-[5px] bg-brand-taupe rounded-lg appearance-none cursor-pointer accent-brand-sand focus:outline-none"
                       />
-                      <div className="flex justify-between text-[8px] font-sans text-brand-champagne/40 tracking-wider">
+                      <div className="flex justify-between text-[8px] font-sans text-[#c8b6a6] tracking-wider">
                          <span>Genérica (1)</span>
                          <span>Boutique (10)</span>
                       </div>
@@ -227,7 +227,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
                         onChange={(e) => handleSliderChange('techArchitecture', parseInt(e.target.value))}
                         className="w-full h-[5px] bg-brand-taupe rounded-lg appearance-none cursor-pointer accent-brand-sand focus:outline-none"
                       />
-                      <div className="flex justify-between text-[8px] font-sans text-brand-champagne/40 tracking-wider">
+                      <div className="flex justify-between text-[8px] font-sans text-[#c8b6a6] tracking-wider">
                         <span>Lento (1)</span>
                         <span>Custom (10)</span>
                       </div>
@@ -257,7 +257,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
                         onChange={(e) => handleSliderChange('digitalPresence', parseInt(e.target.value))}
                         className="w-full h-[5px] bg-brand-taupe rounded-lg appearance-none cursor-pointer accent-brand-sand focus:outline-none"
                       />
-                      <div className="flex justify-between text-[8px] font-sans text-brand-champagne/40 tracking-wider">
+                      <div className="flex justify-between text-[8px] font-sans text-[#c8b6a6] tracking-wider">
                         <span>Anónimo (1)</span>
                         <span>Líder (10)</span>
                       </div>
@@ -287,7 +287,7 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
                         onChange={(e) => handleSliderChange('pricingConfidence', parseInt(e.target.value))}
                         className="w-full h-[5px] bg-brand-taupe rounded-lg appearance-none cursor-pointer accent-brand-sand focus:outline-none"
                       />
-                      <div className="flex justify-between text-[8px] font-sans text-brand-champagne/40 tracking-wider">
+                      <div className="flex justify-between text-[8px] font-sans text-[#c8b6a6] tracking-wider">
                         <span>Descuentos (1)</span>
                         <span>Postura (10)</span>
                       </div>
@@ -427,9 +427,12 @@ export default function AuthorityCalculator({ onStartBooking }: AuthorityCalcula
                     onClick={() => onStartBooking(collectiveScore)}
                     className="w-full bg-brand-sand hover:bg-brand-sand/90 active:scale-[0.98] text-brand-obsidian font-sans font-bold md:font-semibold tracking-wider text-xs uppercase py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-brand-sand/10 cursor-pointer"
                   >
-                    <span>Agendar Diagnóstico en Vivo</span>
+                    <span>AGENDAR DIAGNÓSTICO DE AUTORIDAD</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 300, fontStyle: "italic", fontSize: "13px", color: "#c8b6a6", marginTop: "8px", textAlign: "center" }}>
+                    Inversión del diagnóstico: $265 USD. Reembolsable si no detectamos fugas críticas.
+                  </div>
 
                   <div className="text-center">
                     <button
