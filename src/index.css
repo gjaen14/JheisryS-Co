@@ -22,6 +22,31 @@ body {
   overflow-x: hidden;
 }
 
+/* Contenedor Global de Ancho Máximo (1440px / Boxed Layout + Full-Bleed) */
+.container-boxed {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-boxed {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-boxed {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+
 /* Forzar cursor hand en versión web (dispositivos con mouse) */
 @media (hover: hover) and (pointer: fine) {
   button, 

@@ -29,39 +29,41 @@ export default function MainLayout() {
     <div className="min-h-screen flex flex-col bg-brand-obsidian text-brand-white relative">
       {/* HEADER */}
       <header 
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 px-6 md:px-16 py-5 flex justify-between items-center ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           isScrolled 
             ? 'bg-brand-obsidian/85 backdrop-blur-md border-b border-brand-taupe/15 shadow-xl' 
             : 'bg-transparent border-b border-white/5'
         }`}
       >
-        <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <BrandLogo theme="gold" size={38} showText={true} />
-        </Link>
-
-        {/* Global Navigation */}
-        <nav className="hidden md:flex items-center space-x-10 text-xs tracking-[0.2em] uppercase font-light text-brand-champagne/80">
-          <Link to="/" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/' ? 'text-brand-taupe font-medium' : ''}`}>Inicio</Link>
-          <Link to="/soluciones" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/soluciones' ? 'text-brand-taupe font-medium' : ''}`}>Soluciones</Link>
-          <Link to="/la-firma" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/la-firma' ? 'text-brand-taupe font-medium' : ''}`}>La Firma</Link>
-          <Link to="/acceso" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/acceso' ? 'text-brand-taupe font-medium' : ''}`}>Acceso</Link>
-        </nav>
-
-        {/* CTA & Mobile Toggle */}
-        <div className="flex items-center gap-4">
-          <Link
-            to="/diagnostico"
-            className="hidden sm:inline-block border border-brand-taupe/40 hover:border-brand-taupe hover:text-brand-taupe text-brand-white font-sans text-[10px] tracking-widest uppercase py-2.5 px-5 rounded-full transition-all duration-300"
-          >
-            Diagnóstico
+        <div className="container-boxed py-5 flex justify-between items-center">
+          <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <BrandLogo theme="gold" size={38} showText={true} />
           </Link>
-          <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-brand-taupe p-2 -mr-2 focus:outline-none"
-            aria-label="Toggle mobile menu"
-          >
-            {isMobileMenuOpen ? <X size={28} strokeWidth={1.5} /> : <Menu size={28} strokeWidth={1.5} />}
-          </button>
+
+          {/* Global Navigation */}
+          <nav className="hidden md:flex items-center space-x-10 text-xs tracking-[0.2em] uppercase font-light text-brand-champagne/80">
+            <Link to="/" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/' ? 'text-brand-taupe font-medium' : ''}`}>Inicio</Link>
+            <Link to="/soluciones" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/soluciones' ? 'text-brand-taupe font-medium' : ''}`}>Soluciones</Link>
+            <Link to="/la-firma" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/la-firma' ? 'text-brand-taupe font-medium' : ''}`}>La Firma</Link>
+            <Link to="/acceso" className={`hover:text-brand-taupe transition-colors duration-200 ${location.pathname === '/acceso' ? 'text-brand-taupe font-medium' : ''}`}>Acceso</Link>
+          </nav>
+
+          {/* CTA & Mobile Toggle */}
+          <div className="flex items-center gap-4">
+            <Link
+              to="/diagnostico"
+              className="hidden sm:inline-block border border-brand-taupe/40 hover:border-brand-taupe hover:text-brand-taupe text-brand-white font-sans text-[10px] tracking-widest uppercase py-2.5 px-5 rounded-full transition-all duration-300"
+            >
+              Diagnóstico
+            </Link>
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden text-brand-taupe p-2 -mr-2 focus:outline-none"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? <X size={28} strokeWidth={1.5} /> : <Menu size={28} strokeWidth={1.5} />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -95,8 +97,8 @@ export default function MainLayout() {
       </main>
 
       {/* FOOTER GLOBAL - 3 Columns */}
-      <footer className="py-16 bg-brand-obsidian border-t border-brand-taupe/15 px-6 md:px-16">
-        <div className="container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-left">
+      <footer className="relative z-10 py-16 bg-brand-obsidian border-t border-brand-taupe/15">
+        <div className="container-boxed grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 text-left">
           
           {/* Col 1: Identidad */}
           <div className="space-y-4">
