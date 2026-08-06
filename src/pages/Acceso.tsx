@@ -8,10 +8,10 @@ export default function Acceso() {
 
   return (
     <div className="pt-24 md:pt-32 min-h-screen pb-20 flex flex-col justify-center">
-      <section className="px-6 md:px-16 container mx-auto max-w-2xl text-center">
-        
+      <section className="container-boxed max-w-2xl text-center">
+
         <div className="mb-12">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -29,18 +29,18 @@ export default function Acceso() {
           </motion.p>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="bg-brand-brown/20 border border-brand-taupe/15 rounded-2xl p-8 md:p-12 text-center"
         >
           <Mail className="w-8 h-8 text-brand-taupe mx-auto mb-6 opacity-80" />
-          
-          <a href="mailto:director@soarity.com" className="font-serif text-2xl text-brand-white hover:text-brand-taupe transition-colors inline-block mb-4">
-            director@soarity.com
+
+          <a href="mailto:info@jheisry.com" className="font-serif text-2xl text-brand-white hover:text-brand-taupe transition-colors inline-block mb-4">
+            info@jheisry.com
           </a>
-          
+
           <p className="font-sans text-xs text-brand-champagne/50 font-light block tracking-wide">
             Tiempo estimado de respuesta: 24h a 48h hábiles.
           </p>

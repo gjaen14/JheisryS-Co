@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
-import { ArrowRight, Shield, Layers, Code, AlertTriangle } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Shield, Target, TrendingUp, Lock, CheckCircle2, ChevronRight, Zap, Play, Check, Search, Compass, Palette, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Soluciones() {
@@ -13,26 +13,23 @@ export default function Soluciones() {
   useEffect(() => {
     let animationFrameId: number;
     let pauseEndTime = 0;
-    let currentTop = -10;
+    let currentLeft = -10;
     let lastTime = performance.now();
 
     const getPhasePercentage = (index: number): number | null => {
       const containerEl = document.getElementById('spine-container');
       const dotEl = document.getElementById(`phase-dot-${index}`);
       if (!containerEl || !dotEl) return null;
-      
+
       const containerRect = containerEl.getBoundingClientRect();
       const dotRect = dotEl.getBoundingClientRect();
-      const dotCenterY = dotRect.top + dotRect.height / 2;
-      
-      if (cometRef.current) {
-        const cometRect = cometRef.current.getBoundingClientRect();
-        const currentTopPx = (currentTop / 100) * containerRect.height;
-        const offset = cometRect.bottom - (containerRect.top + currentTopPx);
-        const targetTopPx = dotCenterY - containerRect.top - offset;
-        return (targetTopPx / containerRect.height) * 100;
-      }
-      return null;
+      const dotCenterX = dotRect.left + dotRect.width / 2;
+
+      // La punta del cometa matemáticamente está en origin + 8px
+      const dotCenterXRel = dotCenterX - containerRect.left;
+      const targetLeftPx = dotCenterXRel - 8;
+
+      return (targetLeftPx / containerRect.width) * 100;
     };
 
     const loop = (timestamp: number) => {
@@ -44,20 +41,20 @@ export default function Soluciones() {
         const targetIndex = hoverRef.current;
         const targetPct = getPhasePercentage(targetIndex);
         if (targetPct !== null) {
-          currentTop = targetPct;
+          currentLeft = targetPct;
         }
         if (cometRef.current) {
-          cometRef.current.style.top = `${currentTop}%`;
+          cometRef.current.style.left = `${currentLeft}%`;
         }
         autoPauseRef.current = null; // Cancelar pausa automática activa
       } else if (autoPauseRef.current !== null) {
         const targetIndex = autoPauseRef.current;
         const targetPct = getPhasePercentage(targetIndex);
         if (targetPct !== null) {
-          currentTop = targetPct;
+          currentLeft = targetPct;
         }
         if (cometRef.current) {
-          cometRef.current.style.top = `${currentTop}%`;
+          cometRef.current.style.left = `${currentLeft}%`;
         }
         // Pausa de 3 segundos
         if (timestamp > pauseEndTime) {
@@ -65,34 +62,37 @@ export default function Soluciones() {
         }
       } else {
         // 2. Movimiento del Cometa
-        currentTop += (120 / 6000) * dt; // 120% en 6 segundos para dinamismo
+        currentLeft += (120 / 6000) * dt; // 120% en 6 segundos para dinamismo
 
-        if (currentTop >= 110) {
-          currentTop = -10; // Reiniciar loop
+        if (currentLeft >= 110) {
+          currentLeft = -5; // Reiniciar loop
           hasPausedRef.current = [false, false, false, false];
         }
 
         if (cometRef.current) {
-          cometRef.current.style.top = `${currentTop}%`;
+          cometRef.current.style.left = `${currentLeft}%`;
 
-          // 3. Detección de colisiones
-          const cometRect = cometRef.current.getBoundingClientRect();
-          const cometPointY = cometRect.bottom;
+          // 3. Detección de colisiones (Matemática Pura)
+          const containerEl = document.getElementById('spine-container');
+          if (containerEl) {
+            const containerRect = containerEl.getBoundingClientRect();
+            const currentLeftPx = (currentLeft / 100) * containerRect.width;
+            const cometPointX = containerRect.left + currentLeftPx + 8;
 
-          [0, 1, 2, 3].forEach((index) => {
-            const dotEl = document.getElementById(`phase-dot-${index}`);
-            if (!dotEl) return;
-            
-            const dotRect = dotEl.getBoundingClientRect();
-            const dotCenterY = dotRect.top + dotRect.height / 2;
-            
-            // Margen de 15px para colisión
-            if (!hasPausedRef.current[index] && Math.abs(cometPointY - dotCenterY) < 15) {
-              hasPausedRef.current[index] = true;
-              autoPauseRef.current = index;
-              pauseEndTime = timestamp + 3000; // 3s auto-pause
-            }
-          });
+            [0, 1, 2, 3].forEach((index) => {
+              const dotEl = document.getElementById(`phase-dot-${index}`);
+              if (!dotEl) return;
+
+              const dotRect = dotEl.getBoundingClientRect();
+              const dotCenterX = dotRect.left + dotRect.width / 2;
+
+              if (!hasPausedRef.current[index] && Math.abs(cometPointX - dotCenterX) < 15) {
+                hasPausedRef.current[index] = true;
+                autoPauseRef.current = index;
+                pauseEndTime = timestamp + 3000; // 3s auto-pause
+              }
+            });
+          }
         }
       }
 
@@ -100,7 +100,7 @@ export default function Soluciones() {
       [0, 1, 2, 3].forEach((index) => {
         const isHovered = hoverRef.current === index;
         const isAuto = autoPauseRef.current === index;
-        
+
         const titleEl = document.getElementById(`phase-title-${index}`);
         const dotEl = document.getElementById(`phase-dot-${index}`);
 
@@ -129,210 +129,298 @@ export default function Soluciones() {
   };
 
   return (
-    <div className="pt-24 md:pt-32">
-      {/* LA ESCALERA DE VALOR & HEADER */}
-      <section className="py-8 md:py-10 bg-brand-brown/20 border-y border-brand-taupe/10 relative max-h-[85vh] flex flex-col justify-center">
-        <div className="px-6 md:px-16 container mx-auto max-w-5xl relative flex flex-col h-full justify-center">
-          
-          {/* TÍTULO PRINCIPAL INTEGRADO */}
-          <div className="text-center mb-5 md:mb-6">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="font-serif text-[1.1rem] sm:text-xl md:text-3xl lg:text-[44px] text-brand-white tracking-tight leading-[1.15] md:leading-[1.05] whitespace-nowrap"
-            >
-              Tu marca no necesita un rediseño.<br/>
-              <span className="italic font-normal text-brand-taupe">Necesita un sistema de activos.</span>
-            </motion.h1>
-            
-            {/* ANCLA EDITORIAL */}
+    <div className="bg-brand-obsidian min-h-screen relative overflow-hidden font-sans">
+      {/* Fondo de Rejilla Arquitectónica al 2% */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none opacity-[0.02]"
+        style={{
+          backgroundImage: 'linear-gradient(to right, #c8b6a6 1px, transparent 1px), linear-gradient(to bottom, #c8b6a6 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
+        }}
+      />
+
+      {/* BLOQUE 1: HERO (Estructura de 2 Columnas) */}
+      <section className="relative w-full min-h-screen flex flex-col md:flex-row items-stretch pt-24 md:pt-[87px] border-b border-brand-taupe/10 z-10 overflow-hidden">
+
+        {/* Columna Izquierda: Imagen CEO */}
+        <div className="w-full md:w-[45%] relative min-h-[50vh] md:min-h-0 order-2 md:order-1">
+          <div
+            className="absolute inset-x-0 bottom-0 top-0 bg-contain bg-[position:left_top] bg-no-repeat"
+            style={{
+              backgroundImage: "url('/images/CEOYSL.png')",
+              WebkitMaskImage: "linear-gradient(to right, black 70%, transparent 100%)",
+              maskImage: "linear-gradient(to right, black 70%, transparent 100%)"
+            }}
+          />
+        </div>
+
+        {/* Columna Derecha: Copy y Sello de Autoridad */}
+        <div className="w-full md:w-[55%] flex flex-col justify-center px-6 md:pr-16 lg:pr-24 md:pl-8 lg:pl-10 pb-16 md:pb-0 relative order-1 md:order-2">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-xl"
+          >
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] text-brand-white tracking-tight leading-[1.1] mb-6">
+              Tu sucursal digital es tu mayor activo financiero.
+              <span className="block mt-3 italic text-[#8c6753] font-normal">
+                Deja de tratarla como un gasto de diseño.
+              </span>
+            </h1>
+
+            <p className="font-sans text-sm md:text-base text-brand-champagne/80 font-light leading-relaxed mb-10">
+              Arquitectura de Ecosistemas de Autoridad: Creamos infraestructuras digitales que proyectan solvencia y captan capital.
+            </p>
+
+            {/* Sello de Autoridad Integrado */}
+            <div className="border border-[#8c6753]/30 bg-[#4c3628]/10 backdrop-blur-sm rounded-xl p-6 md:p-8 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#8c6753]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <Shield className="w-6 h-6 text-[#8c6753] mb-4" />
+              <h4 className="font-sans text-[10px] md:text-xs uppercase tracking-[0.2em] text-[#c8b6a6] font-bold mb-2">
+                Política de Cero Parches
+              </h4>
+              <p className="font-sans text-xs md:text-sm text-[#c8b6a6]/70 leading-relaxed font-light">
+                No ejecutamos intervenciones aisladas; construimos ecosistemas de autoridad total.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* BLOQUE 2: TIMELINE DE INGENIERÍA */}
+      <section className="py-24 md:py-32 relative z-10 border-b border-brand-taupe/10">
+        <div className="container-boxed relative">
+
+          {/* Timeline Header */}
+          <div className="text-center mb-20 md:mb-28 max-w-4xl mx-auto">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-sans text-xs md:text-[10px] tracking-[0.3em] uppercase text-brand-taupe font-light block mt-3 md:mt-2.5"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-sans text-xs tracking-[0.4em] uppercase text-brand-taupe font-semibold block mb-4"
             >
-              PROTOCOLO DE AUTORIDAD
+              Metodología de Blindaje
             </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="font-serif text-3xl md:text-5xl lg:text-[56px] text-brand-white leading-[1.1] mb-6"
+            >
+              La Arquitectura de tu Sede corporativa Digital
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="font-sans text-[16px] md:text-[18px] text-[#4c3628] font-light leading-relaxed max-w-2xl mx-auto"
+            >
+              Implemento un despliegue táctico que transformará cada punto de contacto digital en un motor de captación y filtrado de capital.
+            </motion.p>
           </div>
 
-          <div id="spine-container" className="space-y-6 md:space-y-0 relative py-2">
-            {/* Línea vertical con recorrido continuo */}
-            <div className="absolute left-[24px] md:left-1/2 top-0 bottom-0 w-[1px] bg-brand-taupe/10 md:-translate-x-1/2 z-0">
-              <div
-                ref={cometRef}
-                style={{ top: "-10%" }}
-                className="absolute left-0 -translate-x-1/2 flex flex-col items-center -mt-16 z-20 pointer-events-none"
-              >
-                {/* Cola del cometa */}
-                <div className="w-[2px] h-16 bg-gradient-to-b from-transparent via-[#c8b6a6]/50 to-[#c8b6a6] rounded-full" />
-                {/* Cabeza del cometa */}
-                <div className="w-2 h-2 bg-[#f2f1eb] rounded-full shadow-[0_0_12px_rgba(200,182,166,1)] -mt-[2px]" />
-              </div>
-            </div>
-            
-            {/* FASE 0 */}
-            <div 
-              className="relative pl-10 md:pl-0 md:flex md:items-center md:justify-center py-3 md:py-4"
-              onMouseEnter={() => handleMouseEnter(0)}
-              onMouseLeave={() => handleMouseLeave(0)}
-            >
-              {/* Columna Izquierda (Texto en desktop) */}
-              <div className="w-full md:w-[calc(50%-24px)] md:text-right md:pr-8">
-                <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-brand-taupe/85 mb-1 block">
-                  Fase 0
-                </span>
-                <h3 
-                  id="phase-title-0" 
-                  className="font-serif text-lg md:text-[22px] text-brand-white mb-1 md:mb-1.5 font-medium transition-all duration-500 ease-in-out [&.title-glow-active]:text-[#f2f1eb] [&.title-glow-active]:drop-shadow-[0_0_12px_rgba(200,182,166,0.8)]"
+          <div className="w-full overflow-x-auto hide-scrollbar pb-4 md:pb-10">
+            <div id="spine-container" className="relative min-w-[1200px] lg:min-w-[1400px] xl:min-w-full h-[360px] md:h-[440px] flex flex-row items-center justify-between mx-auto">
+
+              {/* Línea horizontal base y conectora */}
+              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#8c6753]/20 -translate-y-1/2 z-0" />
+
+              {/* Contenedor del Cometa (Línea de energía) */}
+              <div className="absolute top-1/2 left-0 w-full h-[1px] -translate-y-1/2 z-30 pointer-events-none">
+                <div
+                  ref={cometRef}
+                  style={{ left: "-5%" }}
+                  className="absolute top-0 -translate-y-1/2 flex flex-row items-center -ml-16 pointer-events-none"
                 >
-                  Diagnóstico de Autoridad
-                </h3>
-                <p className="font-sans text-[13px] md:text-[14px] text-brand-champagne font-normal leading-relaxed max-w-[450px] md:ml-auto">
-                  El Filtro. Evaluamos tu estrategia, narrativa, presencia visual y arquitectura técnica. Identificamos latencias en tu ecosistema y fugas de autoridad.
-                </p>
+                  {/* Cola del cometa */}
+                  <div className="h-[2px] w-16 shrink-0 bg-gradient-to-r from-transparent via-[#c8b6a6]/60 to-[#c8b6a6] rounded-full" />
+                  {/* Cabeza del cometa */}
+                  <div className="h-2 w-2 shrink-0 bg-[#f2f1eb] rounded-full shadow-[0_0_12px_rgba(200,182,166,1)] -ml-[2px]" />
+                </div>
               </div>
-              
-              {/* Columna Central (Punto/Nodo) */}
-              <div className="absolute left-[24px] top-[12px] md:top-auto md:static flex items-center justify-center -translate-x-1/2 md:translate-x-0 z-10 w-2 h-2 md:w-12 md:h-12">
-                <span 
-                  id="phase-dot-0"
-                  className="w-2 h-2 rounded-full bg-[#c8b6a6] transition-all duration-500 ease-in-out [&.dot-glow-active]:shadow-[0_0_15px_rgba(200,182,166,1)] z-10 relative" 
-                />
+
+              {/* FASE 0: ARRIBA */}
+              <div className="relative w-1/4 h-full flex flex-col items-center justify-center group" onMouseEnter={() => handleMouseEnter(0)} onMouseLeave={() => handleMouseLeave(0)}>
+                <div className="absolute bottom-[calc(50%+36px)] text-center px-4 w-[180px] md:w-[220px] flex flex-col items-center transition-all duration-500 ease-out group-hover:-translate-y-3 group-hover:scale-105">
+                  <Search className="w-5 h-5 text-[#8c6753] mb-4 opacity-80 transition-all duration-500 group-hover:text-[#f2f1eb]" />
+                  <h3 id="phase-title-0" className="font-serif text-base md:text-lg text-brand-white mb-2 font-semibold tracking-wide transition-all duration-500 ease-in-out [&.title-glow-active]:text-[#f2f1eb] [&.title-glow-active]:drop-shadow-[0_0_15px_rgba(200,182,166,0.6)]">Filtro de Rentabilidad</h3>
+                  <p className="font-sans text-[11px] md:text-[12px] text-brand-champagne/50 font-light leading-relaxed transition-colors duration-500 group-hover:text-brand-champagne/80">Identificamos fugas de autoridad en tu ecosistema técnico y estratégico.</p>
+                </div>
+                <div className="absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center">
+                  <span id="phase-dot-0" className="w-2.5 h-2.5 rounded-full bg-[#8c6753] transition-all duration-500 ease-in-out [&.dot-glow-active]:bg-[#f2f1eb] [&.dot-glow-active]:shadow-[0_0_20px_rgba(242,241,235,0.8)] z-10 relative" />
+                </div>
+                {/* Conector */}
+                <div className="absolute bottom-[50%] h-[36px] w-[1px] bg-[#8c6753]/20 transition-all duration-500 ease-out group-hover:h-[48px] group-hover:bg-[#8c6753]/60" />
               </div>
-              
-              {/* Columna Derecha (Vacía en desktop, oculta en móvil) */}
-              <div className="hidden md:block md:w-[calc(50%-24px)]" />
+
+              {/* FASE 1: ABAJO */}
+              <div className="relative w-1/4 h-full flex flex-col items-center justify-center group" onMouseEnter={() => handleMouseEnter(1)} onMouseLeave={() => handleMouseLeave(1)}>
+                <div className="absolute top-[calc(50%+36px)] text-center px-4 w-[180px] md:w-[220px] flex flex-col items-center transition-all duration-500 ease-out group-hover:translate-y-3 group-hover:scale-105">
+                  <Compass className="w-5 h-5 text-[#8c6753] mb-4 opacity-80 transition-all duration-500 group-hover:text-[#f2f1eb]" />
+                  <h3 id="phase-title-1" className="font-serif text-base md:text-lg text-brand-white mb-2 font-semibold tracking-wide transition-all duration-500 ease-in-out [&.title-glow-active]:text-[#f2f1eb] [&.title-glow-active]:drop-shadow-[0_0_15px_rgba(200,182,166,0.6)]">Dirección Estratégica</h3>
+                  <p className="font-sans text-[11px] md:text-[12px] text-brand-champagne/50 font-light leading-relaxed transition-colors duration-500 group-hover:text-brand-champagne/80">Eliminamos la improvisación en cada punto de contacto de tu sucursal.</p>
+                </div>
+                <div className="absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center">
+                  <span id="phase-dot-1" className="w-2.5 h-2.5 rounded-full bg-[#8c6753] transition-all duration-500 ease-in-out [&.dot-glow-active]:bg-[#f2f1eb] [&.dot-glow-active]:shadow-[0_0_20px_rgba(242,241,235,0.8)] z-10 relative" />
+                </div>
+                {/* Conector */}
+                <div className="absolute top-[50%] h-[36px] w-[1px] bg-[#8c6753]/20 transition-all duration-500 ease-out group-hover:h-[48px] group-hover:bg-[#8c6753]/60" />
+              </div>
+
+              {/* FASE 2: ARRIBA */}
+              <div className="relative w-1/4 h-full flex flex-col items-center justify-center group" onMouseEnter={() => handleMouseEnter(2)} onMouseLeave={() => handleMouseLeave(2)}>
+                <div className="absolute bottom-[calc(50%+36px)] text-center px-4 w-[180px] md:w-[220px] flex flex-col items-center transition-all duration-500 ease-out group-hover:-translate-y-3 group-hover:scale-105">
+                  <Palette className="w-5 h-5 text-[#8c6753] mb-4 opacity-80 transition-all duration-500 group-hover:text-[#f2f1eb]" />
+                  <h3 id="phase-title-2" className="font-serif text-base md:text-lg text-brand-white mb-2 font-semibold tracking-wide transition-all duration-500 ease-in-out [&.title-glow-active]:text-[#f2f1eb] [&.title-glow-active]:drop-shadow-[0_0_15px_rgba(200,182,166,0.6)]">Solvencia Visual</h3>
+                  <p className="font-sans text-[11px] md:text-[12px] text-brand-champagne/50 font-light leading-relaxed transition-colors duration-500 group-hover:text-brand-champagne/80">Elevamos tu estándar gráfico a niveles Senior.</p>
+                </div>
+                <div className="absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center">
+                  <span id="phase-dot-2" className="w-2.5 h-2.5 rounded-full bg-[#8c6753] transition-all duration-500 ease-in-out [&.dot-glow-active]:bg-[#f2f1eb] [&.dot-glow-active]:shadow-[0_0_20px_rgba(242,241,235,0.8)] z-10 relative" />
+                </div>
+                {/* Conector */}
+                <div className="absolute bottom-[50%] h-[36px] w-[1px] bg-[#8c6753]/20 transition-all duration-500 ease-out group-hover:h-[48px] group-hover:bg-[#8c6753]/60" />
+              </div>
+
+              {/* FASE 3: ABAJO */}
+              <div className="relative w-1/4 h-full flex flex-col items-center justify-center group" onMouseEnter={() => handleMouseEnter(3)} onMouseLeave={() => handleMouseLeave(3)}>
+                <div className="absolute top-[calc(50%+36px)] text-center px-4 w-[180px] md:w-[220px] flex flex-col items-center transition-all duration-500 ease-out group-hover:translate-y-3 group-hover:scale-105">
+                  <Zap className="w-5 h-5 text-[#8c6753] mb-4 opacity-80 transition-all duration-500 group-hover:text-[#f2f1eb]" />
+                  <h3 id="phase-title-3" className="font-serif text-base md:text-lg text-brand-white mb-2 font-semibold tracking-wide transition-all duration-500 ease-in-out [&.title-glow-active]:text-[#f2f1eb] [&.title-glow-active]:drop-shadow-[0_0_15px_rgba(200,182,166,0.6)]">Activo de Conversión</h3>
+                  <p className="font-sans text-[11px] md:text-[12px] text-brand-champagne/50 font-light leading-relaxed transition-colors duration-500 group-hover:text-brand-champagne/80">Construimos tu activo digital inmaculado para captar tráfico High-Ticket.</p>
+                </div>
+                <div className="absolute top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center">
+                  <span id="phase-dot-3" className="w-2.5 h-2.5 rounded-full bg-[#8c6753] transition-all duration-500 ease-in-out [&.dot-glow-active]:bg-[#f2f1eb] [&.dot-glow-active]:shadow-[0_0_20px_rgba(242,241,235,0.8)] z-10 relative" />
+                </div>
+                {/* Conector */}
+                <div className="absolute top-[50%] h-[36px] w-[1px] bg-[#8c6753]/20 transition-all duration-500 ease-out group-hover:h-[48px] group-hover:bg-[#8c6753]/60" />
+              </div>
+
             </div>
-
-            {/* FASE 1 */}
-            <div 
-              className="relative pl-10 md:pl-0 md:flex md:items-center md:justify-center py-3 md:py-4"
-              onMouseEnter={() => handleMouseEnter(1)}
-              onMouseLeave={() => handleMouseLeave(1)}
-            >
-              {/* Columna Izquierda (Vacía en desktop, oculta en móvil) */}
-              <div className="hidden md:block md:w-[calc(50%-24px)]" />
-              
-              {/* Columna Central (Punto/Nodo) */}
-              <div className="absolute left-[24px] top-[12px] md:top-auto md:static flex items-center justify-center -translate-x-1/2 md:translate-x-0 z-10 w-2 h-2 md:w-12 md:h-12">
-                <span 
-                  id="phase-dot-1"
-                  className="w-2 h-2 rounded-full bg-[#c8b6a6] transition-all duration-500 ease-in-out [&.dot-glow-active]:shadow-[0_0_15px_rgba(200,182,166,1)] z-10 relative" 
-                />
-              </div>
-
-              {/* Columna Derecha (Texto en desktop) */}
-              <div className="w-full md:w-[calc(50%-24px)] md:text-left md:pl-8">
-                <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-brand-taupe/85 mb-1 block">
-                  Fase 1
-                </span>
-                <h3 
-                  id="phase-title-1" 
-                  className="font-serif text-lg md:text-[22px] text-brand-white mb-1 md:mb-1.5 font-medium transition-all duration-500 ease-in-out [&.title-glow-active]:text-[#f2f1eb] [&.title-glow-active]:drop-shadow-[0_0_12px_rgba(200,182,166,0.8)]"
-                >
-                  Posicionamiento
-                </h3>
-                <p className="font-sans text-[13px] md:text-[14px] text-brand-champagne font-normal leading-relaxed max-w-[450px] md:mr-auto">
-                  El Pivote. Eliminamos la improvisación. Ajustamos tu estrategia para que cada punto de contacto tenga un propósito y dirección clara.
-                </p>
-              </div>
-            </div>
-
-            {/* FASE 2 */}
-            <div 
-              className="relative pl-10 md:pl-0 md:flex md:items-center md:justify-center py-3 md:py-4"
-              onMouseEnter={() => handleMouseEnter(2)}
-              onMouseLeave={() => handleMouseLeave(2)}
-            >
-              {/* Columna Izquierda (Texto en desktop) */}
-              <div className="w-full md:w-[calc(50%-24px)] md:text-right md:pr-8">
-                <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-brand-taupe/85 mb-1 block">
-                  Fase 2
-                </span>
-                <h3 
-                  id="phase-title-2" 
-                  className="font-serif text-lg md:text-[22px] text-brand-white mb-1 md:mb-1.5 font-medium transition-all duration-500 ease-in-out [&.title-glow-active]:text-[#f2f1eb] [&.title-glow-active]:drop-shadow-[0_0_12px_rgba(200,182,166,0.8)]"
-                >
-                  Identidad de Estatus
-                </h3>
-                <p className="font-sans text-[13px] md:text-[14px] text-brand-champagne font-normal leading-relaxed max-w-[450px] md:ml-auto">
-                  La Solvencia. Elevamos tu estándar visual. Construimos un relato visual y verbal que proyecte el estándar real de tu operación. Eliminamos el aspecto genérico y lo reemplazamos con autoridad pura.
-                </p>
-              </div>
-              
-              {/* Columna Central (Punto/Nodo) */}
-              <div className="absolute left-[24px] top-[12px] md:top-auto md:static flex items-center justify-center -translate-x-1/2 md:translate-x-0 z-10 w-2 h-2 md:w-12 md:h-12">
-                <span 
-                  id="phase-dot-2"
-                  className="w-2 h-2 rounded-full bg-[#c8b6a6] transition-all duration-500 ease-in-out [&.dot-glow-active]:shadow-[0_0_15px_rgba(200,182,166,1)] z-10 relative" 
-                />
-              </div>
-              
-              {/* Columna Derecha (Vacía en desktop, oculta en móvil) */}
-              <div className="hidden md:block md:w-[calc(50%-24px)]" />
-            </div>
-
-            {/* FASE 3 */}
-            <div 
-              className="relative pl-10 md:pl-0 md:flex md:items-center md:justify-center py-3 md:py-4"
-              onMouseEnter={() => handleMouseEnter(3)}
-              onMouseLeave={() => handleMouseLeave(3)}
-            >
-              {/* Columna Izquierda (Vacía en desktop, oculta en móvil) */}
-              <div className="hidden md:block md:w-[calc(50%-24px)]" />
-              
-              {/* Columna Central (Punto/Nodo) */}
-              <div className="absolute left-[24px] top-[12px] md:top-auto md:static flex items-center justify-center -translate-x-1/2 md:translate-x-0 z-10 w-2 h-2 md:w-12 md:h-12">
-                <span 
-                  id="phase-dot-3"
-                  className="w-2 h-2 rounded-full bg-[#c8b6a6] transition-all duration-500 ease-in-out [&.dot-glow-active]:shadow-[0_0_15px_rgba(200,182,166,1)] z-10 relative" 
-                />
-              </div>
-
-              {/* Columna Derecha (Texto en desktop) */}
-              <div className="w-full md:w-[calc(50%-24px)] md:text-left md:pl-8">
-                <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-brand-taupe/85 mb-1 block">
-                  Fase 3
-                </span>
-                <h3 
-                  id="phase-title-3" 
-                  className="font-serif text-lg md:text-[22px] text-brand-white mb-1 md:mb-1.5 font-medium transition-all duration-500 ease-in-out [&.title-glow-active]:text-[#f2f1eb] [&.title-glow-active]:drop-shadow-[0_0_12px_rgba(200,182,166,0.8)]"
-                >
-                  Arquitectura de Conversión
-                </h3>
-                <p className="font-sans text-[13px] md:text-[14px] text-brand-champagne font-normal leading-relaxed max-w-[450px] md:mr-auto">
-                  El Blindaje. Construimos tu activo digital inmaculado. Un sistema web optimizado para captar tráfico y convertirlo en capital, sin fricción, elevando tu sede corporativa digital.
-                </p>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
 
-      {/* SECCIÓN: POLÍTICA DE INTEGRIDAD */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-16 container mx-auto max-w-3xl text-center">
-        {/* MICRO-ETIQUETA */}
-        <span className="font-sans text-xs md:text-[10px] tracking-[0.4em] uppercase text-brand-taupe font-semibold block mb-4">
-          MI POLÍTICA DE CERO PARCHES
-        </span>
-        <h2 className="font-serif text-3xl md:text-[38px] text-brand-white leading-tight font-medium">
-          El compromiso de la firma
-        </h2>
-        
-        <p className="font-sans text-sm md:text-base text-brand-champagne/90 font-light mt-6 leading-relaxed max-w-[600px] mx-auto">
-          La autoridad es un sistema, no una suma de piezas aisladas. No ejecutamos intervenciones desconectadas. Diseñamos Ecosistemas Digitales completos desde el diagnóstico estratégico hasta la ingeniería de conversión, para transformar tu sede corporativa digital en un activo financiero cuantificable.
-        </p>
+      {/* BLOQUE 3: EVIDENCIA DE AUTORIDAD (Mockup Triple) */}
+      <section className="py-24 md:py-32 relative z-10 border-b border-brand-taupe/10">
+        <div className="container-boxed">
+          <div className="text-center mb-20 md:mb-28">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-serif text-3xl md:text-5xl text-brand-white"
+            >
+              Ingeniería de Autoridad en Acción.
+            </motion.h2>
+          </div>
 
-        <button
-          onClick={() => navigate('/diagnostico')}
-          className="group w-full md:w-auto inline-flex justify-center items-center gap-2 bg-brand-sand hover:bg-[#4c3628] text-brand-obsidian hover:text-[#f2f1eb] font-sans font-bold md:font-semibold tracking-widest text-xs uppercase py-4 px-8 rounded-xl transition-all duration-300 shadow-xl shadow-brand-sand/5 mt-10 btn-energy-flow"
+          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+            {/* Izquierda: Imagen Ecosistema Todo En Uno */}
+            <div className="w-full lg:w-3/5 relative flex items-center justify-center">
+              <motion.img
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                src="/images/EcosistemaTodoEnUno.png"
+                alt="Ecosistema Todo En Uno"
+                className="w-full h-auto max-h-[550px] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+              />
+            </div>
+
+            {/* Derecha: Ficha Técnica */}
+            <div className="w-full lg:w-2/5 flex flex-col space-y-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h4 className="font-sans text-xs tracking-[0.2em] uppercase text-[#8c6753] font-bold mb-3">
+                  Identidad Estratégica
+                </h4>
+                <p className="font-sans text-sm text-[#c8b6a6]/70 leading-relaxed font-light">
+                  Desarrollo de sistema visual de alto nivel que proyecta solvencia inmediata y separa a la marca de la competencia commodity.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <h4 className="font-sans text-xs tracking-[0.2em] uppercase text-[#8c6753] font-bold mb-3">
+                  Arquitectura de Ecosistema
+                </h4>
+                <p className="font-sans text-sm text-[#c8b6a6]/70 leading-relaxed font-light">
+                  Integración fluida entre la identidad visual, la sede corporativa digital (web) y el sistema de automatización (facturación).
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="p-6 border-l-2 border-[#8c6753] bg-[#8c6753]/5"
+              >
+                <h4 className="font-sans text-[11px] tracking-[0.2em] uppercase text-[#f2f1eb] font-bold mb-3">
+                  Resultado Operativo
+                </h4>
+                <p className="font-sans text-sm text-[#c8b6a6]/90 leading-relaxed font-light">
+                  Un activo digital inmaculado donde cada píxel tiene una función operativa: captar, filtrar y convertir prospectos de alto valor.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BLOQUE 4: CIERRE DE AUTORIDAD */}
+      <section className="py-24 md:py-32 relative z-10 container-boxed text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="font-serif text-4xl md:text-[56px] text-brand-white leading-tight font-medium mb-8"
         >
-          <span>Iniciar Diagnóstico</span>
-          <ArrowRight className="w-4 h-4 text-brand-obsidian group-hover:text-[#f2f1eb] transition-colors duration-300" />
-        </button>
+          ¿Listo para blindar tu facturación?
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="font-sans text-base md:text-lg text-brand-champagne/80 font-light leading-relaxed max-w-2xl mx-auto mb-12"
+        >
+          La autoridad es un sistema, no una suma de piezas aisladas. Transformamos tu sede corporativa digital en un activo financiero cuantificable.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="flex flex-col items-center justify-center"
+        >
+          <button
+            onClick={() => navigate('/diagnostico')}
+            className="group relative w-full md:w-auto overflow-hidden bg-transparent border border-[#c8b6a6]/30 text-[#f2f1eb] font-sans font-bold md:font-semibold tracking-widest text-xs uppercase py-5 px-12 rounded-xl transition-all duration-500 hover:border-[#8c6753] hover:shadow-[0_0_30px_rgba(140,103,83,0.3)] flex items-center justify-center gap-3"
+          >
+            <div className="absolute inset-0 bg-[#8c6753] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0" />
+            <span className="relative z-10">INICIAR DIAGNÓSTICO</span>
+            <ArrowRight className="w-4 h-4 text-[#c8b6a6] group-hover:text-[#f2f1eb] transition-colors duration-300 relative z-10" />
+          </button>
+
+          <span className="mt-5 font-mono text-[10px] tracking-[0.2em] text-[#c8b6a6]/40 uppercase">
+            Solo 3 cupos semanales.
+          </span>
+        </motion.div>
       </section>
     </div>
   );

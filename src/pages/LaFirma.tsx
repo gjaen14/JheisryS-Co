@@ -50,7 +50,7 @@ export default function LaFirma() {
 
   return (
     <div className="relative min-h-screen bg-[#130f08] text-brand-white overflow-hidden">
-      
+
       {/* CAPA DE RUIDO VISUAL (Film Grain - 2% Opacity Overlay) */}
       <div className="fixed inset-0 z-[50] pointer-events-none opacity-[0.02] film-grain mix-blend-overlay" />
 
@@ -61,21 +61,21 @@ export default function LaFirma() {
 
         {/* SECCIÓN 1: HERO SECTION (100vh) */}
         <section className="relative overflow-hidden flex flex-col justify-between min-h-screen pt-24 md:pt-32 pb-8">
-          
+
           {/* FONDO DE ATMÓSFERA (Fluid Mesh Gradient - 3 Puntos de Luz de baja opacidad) */}
           <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             {/* Punto 1: Carbón / Gris Oscuro arriba a la izquierda */}
-            <div 
+            <div
               className="absolute w-[800px] h-[800px] rounded-full top-[-15%] left-[-15%] pointer-events-none opacity-[0.4] blur-[80px]"
               style={{ background: 'radial-gradient(circle at center, rgba(60, 56, 52, 0.25) 0%, rgba(19, 15, 8, 0) 70%)' }}
             />
             {/* Punto 2: Carbón intermedio abajo a la derecha */}
-            <div 
+            <div
               className="absolute w-[900px] h-[900px] rounded-full bottom-[-20%] right-[-15%] pointer-events-none opacity-[0.35] blur-[90px]"
               style={{ background: 'radial-gradient(circle at center, rgba(48, 45, 42, 0.22) 0%, rgba(19, 15, 8, 0) 70%)' }}
             />
             {/* Punto 3: Gris muy oscuro en el centro */}
-            <div 
+            <div
               className="absolute w-[700px] h-[700px] rounded-full top-[20%] left-[25%] pointer-events-none opacity-[0.45] blur-[75px]"
               style={{ background: 'radial-gradient(circle at center, rgba(38, 36, 34, 0.28) 0%, rgba(19, 15, 8, 0) 70%)' }}
             />
@@ -83,7 +83,7 @@ export default function LaFirma() {
 
           {/* Contenedor de la Imagen (Alineado a la derecha, 50% opacidad, sin recortar la imagen) */}
           <div className="absolute inset-0 z-0 flex justify-end pointer-events-none">
-            <div 
+            <div
               className="w-full md:w-[60%] h-full bg-contain bg-right md:bg-[position:right_center] bg-no-repeat opacity-50 relative"
               style={{ backgroundImage: "url('/images/CEO.png')" }}
             >
@@ -93,7 +93,7 @@ export default function LaFirma() {
               <div className="absolute inset-0 bg-gradient-to-b from-[#130f08] via-transparent to-[#130f08]" />
             </div>
           </div>
-          
+
           {/* Brillo sutil detrás del texto para resaltar lectura */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#c8b6a6]/5 rounded-full blur-[100px] z-0 pointer-events-none" />
 
@@ -101,9 +101,9 @@ export default function LaFirma() {
           <div className="flex-none" />
 
           {/* Contenido principal centrado verticalmente */}
-          <div className="relative z-10 px-6 md:px-16 container mx-auto max-w-7xl w-full">
+          <div className="relative z-10 container-boxed w-full">
             <div className="max-w-2xl space-y-8 text-center md:text-left">
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -112,7 +112,7 @@ export default function LaFirma() {
               >
                 Estrategia comercial. Blindaje técnico. Cero fricción.
               </motion.h1>
-              
+
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -122,21 +122,21 @@ export default function LaFirma() {
               >
                 Diseño ecosistemas de autoridad que no solo se ven profesionales, sino que convierten tu tráfico en capital financiero.
               </motion.p>
-              
+
               <div className="pt-6">
-                <a 
-                  href="#la-dupla" 
+                <a
+                  href="#la-dupla"
                   onClick={handleScrollToDupla}
                   className="group relative w-full md:w-auto active:scale-[0.98] text-[#f2f1eb] font-sans font-bold md:font-semibold tracking-wider text-base md:text-xs uppercase py-5 md:py-4 px-10 rounded-xl transition-all duration-300 flex items-center justify-center gap-2.5 shadow-[0_0_20px_rgba(200,182,166,0.15)] hover:shadow-[0_0_30px_rgba(200,182,166,0.3)] mx-auto md:mx-0 overflow-hidden inline-flex"
                 >
                   {/* Animación de fluido de energía rotatorio en el borde */}
-                  <motion.div 
+                  <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
                     className="absolute inset-[-100%] z-0 opacity-80"
                     style={{ background: 'conic-gradient(from 0deg, transparent 0 340deg, #c8b6a6 360deg)' }}
                   />
-                  
+
                   {/* Fondo principal del botón (transparencia del 60% de #4c3628) con blur para cristal */}
                   <div className="absolute inset-[1px] bg-[#4c3628]/60 backdrop-blur-md rounded-xl z-0 transition-colors duration-500 group-hover:bg-[#4c3628]/70" />
 
@@ -149,7 +149,7 @@ export default function LaFirma() {
 
           {/* Marquee inferior de Trayectoria Operativa */}
           <div className="relative z-10 w-full overflow-hidden pt-16 pb-4">
-            <div className="px-6 md:px-16 container mx-auto max-w-7xl">
+            <div className="container-boxed">
               <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#c8b6a6] font-semibold block mb-6 text-center lg:text-left">
                 TRAYECTORIA OPERATIVA
               </span>
@@ -159,15 +159,14 @@ export default function LaFirma() {
                 {/* Set 1 */}
                 {PARTNERS.map((partner, idx) => {
                   return (
-                    <div 
-                      key={`logo-1-${idx}`} 
-                      className={`transition-opacity duration-300 ease-out h-16 md:h-20 mx-8 md:mx-10 flex items-center justify-center cursor-default shrink-0 w-auto ${
-                        partner.featured ? 'opacity-[0.5] hover:opacity-[0.95]' : 'opacity-[0.3] hover:opacity-[0.95]'
-                      }`}
+                    <div
+                      key={`logo-1-${idx}`}
+                      className={`transition-opacity duration-300 ease-out h-16 md:h-20 mx-8 md:mx-10 flex items-center justify-center cursor-default shrink-0 w-auto ${partner.featured ? 'opacity-[0.5] hover:opacity-[0.95]' : 'opacity-[0.3] hover:opacity-[0.95]'
+                        }`}
                     >
-                      <img 
-                        src={`${partner.src}?v=3`} 
-                        alt={partner.name} 
+                      <img
+                        src={`${partner.src}?v=3`}
+                        alt={partner.name}
                         className="h-[30px] md:h-[40px] w-auto object-contain"
                         style={{ filter: 'brightness(0) invert(0.6)' }}
                       />
@@ -177,15 +176,14 @@ export default function LaFirma() {
                 {/* Set 2 */}
                 {PARTNERS.map((partner, idx) => {
                   return (
-                    <div 
-                      key={`logo-2-${idx}`} 
-                      className={`transition-opacity duration-300 ease-out h-16 md:h-20 mx-8 md:mx-10 flex items-center justify-center cursor-default shrink-0 w-auto ${
-                        partner.featured ? 'opacity-[0.5] hover:opacity-[0.95]' : 'opacity-[0.3] hover:opacity-[0.95]'
-                      }`}
+                    <div
+                      key={`logo-2-${idx}`}
+                      className={`transition-opacity duration-300 ease-out h-16 md:h-20 mx-8 md:mx-10 flex items-center justify-center cursor-default shrink-0 w-auto ${partner.featured ? 'opacity-[0.5] hover:opacity-[0.95]' : 'opacity-[0.3] hover:opacity-[0.95]'
+                        }`}
                     >
-                      <img 
-                        src={`${partner.src}?v=3`} 
-                        alt={partner.name} 
+                      <img
+                        src={`${partner.src}?v=3`}
+                        alt={partner.name}
                         className="h-[30px] md:h-[40px] w-auto object-contain"
                         style={{ filter: 'brightness(0) invert(0.6)' }}
                       />
@@ -198,7 +196,7 @@ export default function LaFirma() {
         </section>
 
         {/* SECCIÓN B: EL GÉNESIS (Scroll Asimétrico Sticky Grid 40/60) */}
-        <section className="py-32 px-6 md:px-16 container mx-auto max-w-5xl min-h-[80vh]">
+        <section className="py-32 container-boxed min-h-[80vh]">
           <div className="grid grid-cols-1 lg:grid-cols-10 gap-12 lg:gap-16 items-start">
             {/* Columna Izquierda Sticky (40%) */}
             <div className="lg:col-span-4 lg:sticky lg:top-32 self-start py-4">
@@ -216,7 +214,7 @@ export default function LaFirma() {
             {/* Columna Derecha Fluida (60%) */}
             <div className="lg:col-span-6 space-y-6">
               <p className="font-sans text-base md:text-lg text-brand-champagne/80 font-light leading-relaxed max-w-[60ch]">
-                Durante 18 años vi cómo las marcas B2B fracasaban no por tener malos productos, sino por una fractura fatal: la estrategia iba por un lado y la ejecución técnica por otro.
+                Durante 20 años vi cómo las marcas B2B fracasaban no por tener malos productos, sino por una fractura fatal: la estrategia iba por un lado y la ejecución técnica por otro.
               </p>
               <p className="font-sans text-base md:text-lg text-brand-champagne/80 font-light leading-relaxed max-w-[60ch]">
                 Mi marca personal nació para dictar la dirección (El Diagnóstico). Soarity nació para ejecutarla sin margen de error (La Ingeniería). No somos una agencia tradicional; somos el brazo armado de tu posicionamiento.
@@ -226,13 +224,13 @@ export default function LaFirma() {
         </section>
 
         {/* SECCIÓN C: LA DUPLA (INTERACCIÓN HUMANA - Layout 60/40) */}
-        <section id="la-dupla" className="py-32 px-6 md:px-16 container mx-auto max-w-5xl min-h-[85vh] flex flex-col justify-center">
+        <section id="la-dupla" className="py-32 container-boxed min-h-[85vh] flex flex-col justify-center">
           <div className="grid grid-cols-1 lg:grid-cols-10 gap-16 lg:gap-20 items-center">
-            
+
             {/* Columna Izquierda: Perfiles (60% / lg:col-span-6) */}
             <div className="lg:col-span-6 space-y-16 order-2 lg:order-1">
               {/* Perfil Jheisry */}
-              <div 
+              <div
                 onMouseEnter={() => {
                   setActiveCEO('jheisry');
                   setHoveredCEO('jheisry');
@@ -240,9 +238,8 @@ export default function LaFirma() {
                 onMouseLeave={() => {
                   setHoveredCEO(null);
                 }}
-                className={`transition-all duration-500 cursor-default ${
-                  hoveredCEO === 'gustavo' ? 'opacity-30 blur-[0.5px]' : 'opacity-100'
-                }`}
+                className={`transition-all duration-500 cursor-default ${hoveredCEO === 'gustavo' ? 'opacity-30 blur-[0.5px]' : 'opacity-100'
+                  }`}
               >
                 <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-[#c8b6a6] font-semibold block mb-2">
                   Brand Strategist & Growth Director
@@ -259,7 +256,7 @@ export default function LaFirma() {
               </div>
 
               {/* Perfil Gustavo */}
-              <div 
+              <div
                 onMouseEnter={() => {
                   setActiveCEO('gustavo');
                   setHoveredCEO('gustavo');
@@ -267,9 +264,8 @@ export default function LaFirma() {
                 onMouseLeave={() => {
                   setHoveredCEO(null);
                 }}
-                className={`transition-all duration-500 cursor-default ${
-                  hoveredCEO === 'jheisry' ? 'opacity-30 blur-[0.5px]' : 'opacity-100'
-                }`}
+                className={`transition-all duration-500 cursor-default ${hoveredCEO === 'jheisry' ? 'opacity-30 blur-[0.5px]' : 'opacity-100'
+                  }`}
               >
                 <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-[#c8b6a6] font-semibold block mb-2">
                   Lead Technical Engineer
@@ -288,7 +284,7 @@ export default function LaFirma() {
 
             {/* Columna Derecha: Contenedor único de Fotografía (40% / lg:col-span-4) */}
             <div className="lg:col-span-4 flex items-center justify-center w-full order-1 lg:order-2">
-              <div 
+              <div
                 className="w-full aspect-[3/4] relative overflow-hidden flex items-center justify-center bg-transparent"
                 style={{
                   maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)',
@@ -296,8 +292,8 @@ export default function LaFirma() {
                 }}
               >
                 {/* Jheisry Portrait */}
-                <motion.img 
-                  src="/jheisry.jpg" 
+                <motion.img
+                  src="images/Jheisry_Firma.png"
                   alt="Jheisry Aguilera"
                   loading="lazy"
                   initial={{ opacity: 1 }}
@@ -308,8 +304,8 @@ export default function LaFirma() {
                 />
 
                 {/* Gustavo Portrait */}
-                <motion.img 
-                  src="/CEO.png" 
+                <motion.img
+                  src="images/CEO.png"
                   alt="Gustavo Jaén"
                   loading="lazy"
                   initial={{ opacity: 0 }}
@@ -323,70 +319,68 @@ export default function LaFirma() {
           </div>
         </section>
 
-      {/* SECCIÓN D: EL FILTRO (Tarjetas Bento Expansivas) */}
-      <section className="py-32 px-6 md:px-16 container mx-auto max-w-5xl min-h-[80vh] flex flex-col justify-center">
-        <div className="text-center mb-16">
-          <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-[#c8b6a6] font-semibold block mb-3">
-            El Filtro
-          </span>
-          <h2 className="font-serif text-xl md:text-2xl lg:text-[26px] text-brand-white">
-            Condiciones de Operación
-          </h2>
-        </div>
+        {/* SECCIÓN D: EL FILTRO (Tarjetas Bento Expansivas) */}
+        <section className="py-32 container-boxed min-h-[80vh] flex flex-col justify-center">
+          <div className="text-center mb-16">
+            <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-[#c8b6a6] font-semibold block mb-3">
+              El Filtro
+            </span>
+            <h2 className="font-serif text-xl md:text-2xl lg:text-[26px] text-brand-white">
+              Condiciones de Operación
+            </h2>
+          </div>
 
-        {/* Bento Grid Flex layout for expanding width on desktop hover */}
-        <div className="flex flex-col md:flex-row gap-6 w-full items-stretch justify-center">
-          {CARDS.map((card, idx) => {
-            const isHovered = hoveredCard === idx;
-            const isAnyHovered = hoveredCard !== null;
-            
-            return (
-              <div
-                key={`filter-card-${idx}`}
-                onMouseEnter={() => setHoveredCard(idx)}
-                onMouseLeave={() => setHoveredCard(null)}
-                className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] p-8 bg-brand-brown/10 border border-brand-taupe/15 rounded-2xl flex flex-col justify-between min-h-[260px] cursor-default ${
-                  isAnyHovered 
-                    ? isHovered 
-                      ? 'md:flex-[1.5] opacity-100 border-[#c8b6a6]/30 shadow-lg scale-[1.02]' 
+          {/* Bento Grid Flex layout for expanding width on desktop hover */}
+          <div className="flex flex-col md:flex-row gap-6 w-full items-stretch justify-center">
+            {CARDS.map((card, idx) => {
+              const isHovered = hoveredCard === idx;
+              const isAnyHovered = hoveredCard !== null;
+
+              return (
+                <div
+                  key={`filter-card-${idx}`}
+                  onMouseEnter={() => setHoveredCard(idx)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  className={`transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] p-8 bg-brand-brown/10 border border-brand-taupe/15 rounded-2xl flex flex-col justify-between min-h-[260px] cursor-default ${isAnyHovered
+                    ? isHovered
+                      ? 'md:flex-[1.5] opacity-100 border-[#c8b6a6]/30 shadow-lg scale-[1.02]'
                       : 'md:flex-[0.75] opacity-35 scale-[0.98] blur-[0.5px]'
                     : 'flex-1 opacity-90'
-                }`}
-              >
-                <div>
-                  <span className="font-serif text-4xl text-[#c8b6a6]/20 font-semibold block mb-6">
-                    0{idx + 1}
-                  </span>
-                  <h4 className="font-sans text-base md:text-sm tracking-wider uppercase font-bold text-brand-white mb-4">
-                    {card.title}
-                  </h4>
+                    }`}
+                >
+                  <div>
+                    <span className="font-serif text-4xl text-[#c8b6a6]/20 font-semibold block mb-6">
+                      0{idx + 1}
+                    </span>
+                    <h4 className="font-sans text-base md:text-sm tracking-wider uppercase font-bold text-brand-white mb-4">
+                      {card.title}
+                    </h4>
+                  </div>
+                  <p className={`font-sans text-[13px] md:text-xs text-brand-champagne/80 font-light leading-relaxed transition-opacity duration-300 ${isHovered || !isAnyHovered ? 'opacity-100' : 'opacity-55'
+                    }`}>
+                    {card.desc}
+                  </p>
                 </div>
-                <p className={`font-sans text-[13px] md:text-xs text-brand-champagne/80 font-light leading-relaxed transition-opacity duration-300 ${
-                  isHovered || !isAnyHovered ? 'opacity-100' : 'opacity-55'
-                }`}>
-                  {card.desc}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+              );
+            })}
+          </div>
+        </section>
 
-      {/* SECCIÓN E: MANIFIESTO Y CIERRE (Cierre Borderless con Film Grain & Glow) */}
-      <section className="px-6 py-32 container mx-auto max-w-4xl text-center min-h-[80vh] flex flex-col justify-center">
-        <h3 className="font-serif text-lg md:text-xl lg:text-[22px] text-brand-white opacity-95 leading-relaxed max-w-[700px] text-center mx-auto">
-          "La autoridad es un sistema, no una suma de piezas aisladas. No ejecutamos intervenciones desconectadas. Diseñamos Ecosistemas Digitales completos —desde el diagnóstico estratégico hasta la ingeniería de conversión— para transformar tu sede corporativa digital en un activo financiero cuantificable."
-        </h3>
-        
-        <div className="mt-[10vh]">
-          <Link
-            to="/diagnostico"
-            className="inline-block bg-[#c8b6a6] hover:bg-[#f2f1eb] text-[#130f08] font-sans text-xs tracking-widest uppercase font-semibold py-4 px-8 rounded-full transition-all duration-300 btn-energy-flow"
-          >
-            INICIAR DIAGNÓSTICO
-          </Link>
-        </div>
-      </section>
+        {/* SECCIÓN E: MANIFIESTO Y CIERRE (Cierre Borderless con Film Grain & Glow) */}
+        <section className="py-32 container-boxed text-center min-h-[80vh] flex flex-col justify-center">
+          <h3 className="font-serif text-lg md:text-xl lg:text-[22px] text-brand-white opacity-95 leading-relaxed max-w-[700px] text-center mx-auto">
+            "La autoridad es un sistema, no una suma de piezas aisladas. No ejecutamos intervenciones desconectadas. Diseñamos Ecosistemas Digitales completos —desde el diagnóstico estratégico hasta la ingeniería de conversión— para transformar tu sede corporativa digital en un activo financiero cuantificable."
+          </h3>
+
+          <div className="mt-[10vh]">
+            <Link
+              to="/diagnostico"
+              className="inline-block bg-[#c8b6a6] hover:bg-[#f2f1eb] text-[#130f08] font-sans text-xs tracking-widest uppercase font-semibold py-4 px-8 rounded-full transition-all duration-300 btn-energy-flow"
+            >
+              INICIAR DIAGNÓSTICO
+            </Link>
+          </div>
+        </section>
 
       </div> {/* Fin del Contenido Principal z-[10] */}
     </div>
